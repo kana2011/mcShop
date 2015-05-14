@@ -1,0 +1,19 @@
+{
+  "name": "mcShop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kana2011/mcShop.git"
+  },
+  "author": "kana2011",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kana2011/mcShop/issues"
+  },
+  "homepage": "https://github.com/kana2011/mcShop"
+}
