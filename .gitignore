@@ -1,5 +1,5 @@
 /dist/bower_components/*
-/assets/components/*
+/public/assets/components/*
 /vendor
 /node_modules
 .env
