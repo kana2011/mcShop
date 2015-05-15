@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/kana2011/mcShop/issues"
   },
-  "homepage": "https://github.com/kana2011/mcShop"
+  "homepage": "https://github.com/kana2011/mcShop",
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "laravel-elixir": "^1.0.0"
+  }
 }
