@@ -35,3 +35,14 @@ body{
 #core_scroll_header_panel{
   position: relative:
 }
+
+a:hover { 
+    color: #70e2bf;
+}
+
+a {
+ text-decoration: none;   
+    
+    
+    
+}
