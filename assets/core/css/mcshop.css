@@ -37,12 +37,10 @@ body{
 }
 
 a:hover { 
-    color: #70e2bf;
+    color: #444444;
 }
 
 a {
- text-decoration: none;   
-    
-    
-    
+    color: #555555;
+    text-decoration: none;
 }
