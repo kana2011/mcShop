@@ -1,9 +1,12 @@
 {
   "name": "mcShop",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/kana2011/mcShop",
   "authors": [
-    "kana2011"
+    "kana2011",
+    "paphonbth",
+    "sent44",
+    "markkung08"
   ],
   "license": "MIT",
   "ignore": [
@@ -14,10 +17,10 @@
     "tests"
   ],
   "dependencies": {
+    "polymer": "Polymer/polymer#^0.5.6",
     "core-elements": "Polymer/core-elements#~0.5.6",
     "paper-elements": "Polymer/paper-elements#~0.5.6",
     "font-roboto": "Polymer/font-roboto#~0.5.6",
-    "bootstrap": "~3.3.4",
     "jquery": "~2.1.4"
   }
 }

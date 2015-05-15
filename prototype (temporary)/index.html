@@ -1,0 +1,61 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>mcShop</title>
+    <link rel="import" href="../assets/components/polymer/polymer.html">
+    <link rel="import" href="../assets/components/core-elements/core-elements.html">
+    <link rel="import" href="../assets/components/paper-elements/paper-elements.html">
+  </head>
+  <body unresolved>
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      #core_drawer_panel {
+        right: 0px;
+        bottom: 0px;
+      }
+      #section {
+        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+        background-color: rgb(250, 250, 250);
+      }
+      #section1 {
+        height: 100%;
+        box-sizing: border-box;
+        background-color: rgb(221, 221, 221);
+      }
+      #core_scroll_header_panel {
+        left: 0px;
+        top: 0px;
+        position: static;
+      }
+      #core_toolbar {
+        color: rgb(241, 241, 241);
+        fill: rgb(241, 241, 241);
+        background-color: rgb(66, 133, 244);
+      }
+      #section2 {
+        height: 5000px;
+        background: linear-gradient(rgb(214, 227, 231), rgb(173, 216, 230));
+      }
+    </style>
+    <core-drawer-panel transition id="core_drawer_panel" touch-action>
+      <section id="section" drawer></section>
+      <section id="section1" main>
+        <core-scroll-header-panel headermargin="128" condenses headerheight="192" id="core_scroll_header_panel">
+          <core-toolbar id="core_toolbar" class="tall">
+            <core-icon-button icon="arrow-back" id="core_icon_button"></core-icon-button>
+            <div id="div" flex></div>
+            <core-icon-button icon="search" id="core_icon_button1"></core-icon-button>
+            <core-icon-button icon="more-vert" id="core_icon_button2"></core-icon-button>
+            <div id="div1" class="bottom indent">Title</div>
+          </core-toolbar>
+          <section id="section2" content></section>
+        </core-scroll-header-panel>
+      </section>
+    </core-drawer-panel>
+  </body>
+</html>
