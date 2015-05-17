@@ -21,6 +21,7 @@ Join the talk now @
 > markbright12@icloud.com
 
 > kana2011th
-> kana2011th@icloud
+> kana2011th@icloud.com
 
 > sent44
+> sentbysent@gmail.com
