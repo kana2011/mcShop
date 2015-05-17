@@ -1,6 +1,6 @@
 # mcShop
 mcShop is a free and opensource Minecraft Webshop.
-Creater for Minecrafter by Minecrafter
+Create for Minecrafter by Minecrafter
 
 | Position  | Name |
 | ------------- | ------------- |
@@ -15,3 +15,12 @@ Join the talk now @
 ```php
 <?php echo '<p>Hello VR developer :D</p>'; ?> 
 ```
+
+## Contact Us
+> markkung08
+> markbright12@icloud.com
+
+> kana2011th
+> kana2011th@icloud
+
+> sent44
