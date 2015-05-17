@@ -55,6 +55,7 @@ core-scroll-header-panel::shadow .bg-container{
 core-scroll-header-panel::shadow #headerBg {
   background: url('../../../images/bg.png');
   background-size: cover;
+  background-position: 75%;
 }
 
 h2[mcShop-title]{
