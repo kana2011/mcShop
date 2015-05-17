@@ -12,7 +12,7 @@
   <body unresolved>
 	<core-drawer-panel responsiveWidth="1024px" transition id="core_drawer_panel" touch-action mcShop-main>
       <section drawer>
-        <core-menu>
+        <core-menu excludedLocalNames="shop-divider">
             <paper-item><core-icon icon="home"></core-icon>Home</paper-item>
             <shop-divider></shop-divider>
         </core-menu>
@@ -26,8 +26,7 @@
             <div class="bottom indent" mcShop-title>mcShop</div>
           </core-toolbar>
           <section mcShop-contents>
-            content...
-            <a href="#">link</a>
+            <h2 mcShop-title>Promotion</h2>
           </section>
         </core-scroll-header-panel>
     </core-drawer-panel>
