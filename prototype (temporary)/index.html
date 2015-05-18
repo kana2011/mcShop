@@ -1,41 +1,47 @@
 <!doctype HTML>
 <html>
-  <head>
-    <title>mcShop</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="import" href="../public/assets/components/polymer/polymer.html">
-    <link rel="import" href="../public/assets/components/core-elements/core-elements.html">
-    <link rel="import" href="../public/assets/components/paper-elements/paper-elements.html">
-    <link rel="import" href="../public/assets/core/components/shop-elements/shop-elements.html">
-    <link rel="import" href="../public/assets/components/font-awesome-polymer-icons/fa-icons.html">
-    <link rel="stylesheet" href="../public/assets/core/css/mcshop.css">
-  </head>
-  <body unresolved>
-	<core-drawer-panel responsiveWidth="1024px" transition id="core_drawer_panel" touch-action mcShop-main>
-      <section drawer>
-        <core-menu excludedLocalNames="shop-divider">
-            <paper-item><core-icon icon="home"></core-icon>Home</paper-item>
-            <paper-item><core-icon icon="shopping-cart"></core-icon>Shop</paper-item>
-            <paper-item><core-icon icon="credit-card"></core-icon>Topup</paper-item>
-            <paper-item><core-icon icon="book"></core-icon>Wiki</paper-item>
-            <shop-divider></shop-divider>
-            <paper-item><core-icon icon="fa:sign-in"></core-icon>Login</paper-item>
-            <paper-item><core-icon icon="fa:plus-circle"></core-icon>Register</paper-item>
-        </core-menu>
-      </section>
-			<core-scroll-header-panel condenses keepCondensedHeader id="core_scroll_header_panel" main>
-				<core-toolbar class="tall" mcShop-toolbar>
-            <paper-icon-button icon="menu" id="core_icon_button" core-drawer-toggle></paper-icon-button>
-            <div id="div" flex></div>
-            <paper-icon-button icon="search" id="core_icon_button1"></paper-icon-button>
-            <paper-icon-button icon="more-vert" id="core_icon_button2"></paper-icon-button>
-            <div class="bottom indent" mcShop-title>mcShop</div>
-          </core-toolbar>
-          <section mcShop-contents>
-            <h2 mcShop-title>Promotion</h2>
-          </section>
-        </core-scroll-header-panel>
-    </core-drawer-panel>
-    <script src="../public/assets/core/js/mcshop.js"></script>
-  </body>
+    <head>
+        <title>mcShop</title>
+        <meta name="viewport"content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <link rel="import"href="../public/assets/components/polymer/polymer.html">
+        <link rel="import"href="../public/assets/components/core-elements/core-elements.html">
+        <link rel="import"href="../public/assets/components/paper-elements/paper-elements.html">
+        <link rel="import"href="../public/assets/core/components/shop-elements/shop-elements.html">
+        <link rel="import"href="../public/assets/components/polymer-font-awesome-icons/fa-icons.html">
+        <link rel="stylesheet"href="../public/assets/core/css/mcshop.css">
+    </head>
+    <body unresolved>
+        <core-drawer-panel responsiveWidth="1024px"transition id="core_drawer_panel"touch-action mcShop-main>
+        <section drawer>
+            <core-menu excludedLocalNames="shop-divider" itemsSelector="[clickable]" mcShop-menu>
+	            <paper-item clickable><core-icon icon="home"></core-icon>Home</paper-item>
+	            <paper-item clickable><core-icon icon="shopping-cart"></core-icon>Shop</paper-item>
+	            <paper-item clickable><core-icon icon="credit-card"></core-icon>Topup</paper-item>
+	            <paper-item clickable><core-icon icon="book"></core-icon>Wiki</paper-item>
+	            <shop-divider></shop-divider>
+	            <paper-item shop-showdialog><core-icon icon="fa:sign-in"></core-icon>Login</paper-item>
+	            <paper-item shop-showdialog><core-icon icon="fa:plus-circle"></core-icon>Register</paper-item>
+            </core-menu>
+        </section>
+        <core-scroll-header-panel condenses keepCondensedHeader id="core_scroll_header_panel"main>
+	        <core-toolbar class="tall"mcShop-toolbar>
+		        <paper-icon-button icon="menu"id="core_icon_button"core-drawer-toggle></paper-icon-button>
+		        <div id="div"flex></div>
+		        <paper-icon-button icon="search"id="core_icon_button1"></paper-icon-button>
+		        <paper-icon-button icon="more-vert"id="core_icon_button2"></paper-icon-button>
+		        <div class="bottom indent"mcShop-title>mcShop</div>
+	        </core-toolbar>
+	        <core-pages mcShop-contents>
+	        	<div>
+	        		<h2 mcShop-title>Promotion</h2>
+	        	</div>
+	        	<div></div>
+	        	<div></div>
+	        	<div></div>
+	        </core-pages>
+	        </core-scroll-header-panel>
+        </core-drawer-panel>
+        <script src="../public/assets/core/js/mcshop.js"></script>
+    </body>
 </html>
