@@ -19,3 +19,6 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::post('api', 'ApiController@request');
+Route::get('gen', 'ApiController@gen');
