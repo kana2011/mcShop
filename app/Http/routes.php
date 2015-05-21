@@ -15,14 +15,7 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-/*
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-*/
-
-Route::post('api', 'ApiController@request');
-Route::get('gen', 'ApiController@gen');
-
-Route::post('api/auth/login', 'AuthController@login');
