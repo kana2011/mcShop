@@ -3,3 +3,6 @@
 /vendor
 /node_modules
 .env
+/nbproject/private/
+nbproject/
+sublime/
