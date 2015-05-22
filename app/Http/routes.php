@@ -22,8 +22,9 @@ Route::controllers([
 ]);
 */
 
-Route::post('api', 'ApiController@request');
-Route::get('gen', 'ApiController@gen');
+Route::post('api/{request}/{class?}',function($request,$class=NULL){
+	return app()->make('App\\Http\\Controllers\\'.ucfirst(strtolower($request)).'Controller')->callAction(($class==NULL)?strtolower($request):strtolower($class), Input::all());
+});
 
-Route::post('api/auth/login', 'AuthController@login');
-Route::post('api/auth/logout', 'AuthController@logout');
+// Temporary use for test POST only
+Route::get('gen', 'ApiController@gen');
