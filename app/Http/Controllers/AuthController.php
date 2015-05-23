@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller {
 
-    public function login()
+    public function Login()
     {
         $rules = array(
             'username'    => 'required|alphaNum|min:3',
@@ -38,7 +38,7 @@ class AuthController extends Controller {
         }
     }
     
-    public function logout() {
+    public function Logout() {
         if(Auth::logout()) {
             return view("json")->with(array("json" => array("status" => true)));
         } else {
