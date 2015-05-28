@@ -24,7 +24,7 @@ class AuthController extends Controller {
         } else {
             
             $userdata = array(
-                'username'     => Input::get('username'),
+                'username'  => Input::get('username'),
                 'password'  => Input::get('password')
             );
 

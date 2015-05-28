@@ -2,16 +2,21 @@
 
 use DB;
 use Auth;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller {
-
-    public function myInfo()
-    {
+    
+    private $user;
+    
+    public function __construct() {
         if(Auth::check()) {
-            $info = DB::select('select id, username, money from authme where id = ?', [Auth::user()->id]);
-            return view("json")->with(array("json" => array("status" => true, "result" => $info)));
+            $this->user = Auth::user();
         }
+    }
+
+    public function myInfo() {
+        return $this->json($this->user->getPublicInfo());
     }
 
 }
