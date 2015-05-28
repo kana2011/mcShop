@@ -52,7 +52,7 @@ Route::post('api/{method}/{par?}',function($method,$par=""){
 		$a['parraw'] = $par;
 		Input::merge($a);
 	}
-	return app()->make($controller)->callAction($method,array());
+	return app()->make($controller)->callAction($fn,array());
 })->where('par', '.*');
 
 // Temporary use for test POST only
