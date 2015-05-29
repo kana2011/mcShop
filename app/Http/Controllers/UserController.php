@@ -10,9 +10,8 @@ class UserController extends Controller {
     private $user;
     
     public function __construct() {
-        if(Auth::check()) {
-            $this->user = Auth::user();
-        }
+        $this->middleware('auth');
+        $this->user = Auth::user();
     }
 
     public function myInfo() {

@@ -13,11 +13,8 @@ class ShopController extends Controller {
     private $user;
     
     public function __construct() {
-        if(Auth::check()) {
-            $this->user = Auth::user();
-        } else {
-            throw new NotLoggedInException;
-        }
+        $this->middleware('auth');
+        $this->user = Auth::user();
     }
 
     public function getAll()

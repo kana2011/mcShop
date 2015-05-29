@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use View;
+use Config;
+
 class HomeController extends Controller {
 
 	/*
@@ -20,7 +23,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		//$this->middleware('auth');
 	}
 
 	/**
@@ -30,7 +33,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		return View::make('home')->withTitle(Config::get('mcshop.title'));
 	}
 
 }
