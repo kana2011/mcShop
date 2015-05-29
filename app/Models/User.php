@@ -27,6 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     
     public function makeTransaction($amount, $description) {
         $transaction = new Transaction;
+        $transaction->user_id = $this->id;
         $transaction->amount = $amount;
         $transaction->description = $description;
         $transaction->save();

@@ -3,7 +3,9 @@
 use DB;
 use Auth;
 use Input;
+use App\Exceptions\NotLoggedInException;
 use App\Models\ShopItem;
+use App\Minecraft\MinecraftConnection as Minecraft;
 use App\Http\Controllers\Controller;
 
 class ShopController extends Controller {
@@ -13,6 +15,8 @@ class ShopController extends Controller {
     public function __construct() {
         if(Auth::check()) {
             $this->user = Auth::user();
+        } else {
+            throw new NotLoggedInException;
         }
     }
 
@@ -25,14 +29,21 @@ class ShopController extends Controller {
             $group->items = $items;
             $result[] = $group;
         }
-        return $this->json(array("status" => true, "result" => $result));
+        return $this->success($result);
     }
         
     public function buy() {
         $item = ShopItem::where('id', '=', Input::get('itemid'))->firstOrFail();
         if($this->user->getMoney() >= $item->price) {
             $this->user->makeTransaction(-$item->price, "Bought " . $item->dispname);
-            return $this->json(array("status" => true));
+            $minecraft = Minecraft::getAdapter();
+            if($minecraft->connect()) {
+                $minecraft->sendCommand(str_replace("%player%", $this->user->username, $item->cmd));
+                return $this->success($this->user->getMoney());
+            } else {
+                $this->user->makeTransaction($item->price, "Order failed: Server offline.");
+                return $this->failed("server_offline");
+            }
         }
     }
 
