@@ -12,12 +12,12 @@
                 <div layout horizontal>
                     <div flex></div>
                     <div>
-                        <paper-button class="login-button" onclick="{{validate}}" disabled?="{{dis}}" raised>Login <core-icon icon="fa:arrow-right"></core-icon></paper-button>
+                        <paper-button class="login-button" onclick="{{onbuttonclick}}" disabled?="{{dis}}" raised>Login <core-icon icon="fa:arrow-right"></core-icon></paper-button>
                     </div>
                 </div>
             </paper-material>
         </div>
-        
+        <paper-toast id="toast1" text="Wrong username or password."></paper-toast>
     </template>
     <script src="shop-login.js"></script>
 </polymer-element>

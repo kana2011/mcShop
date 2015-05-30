@@ -3,19 +3,17 @@ Polymer({
     is: 'shop-login',
     ready: function() {
         login = this;
-        this.validate;
+        this.onbuttonclick = this.validate;
         this.title;
     },
     validate: function() {
         login.submit();
         if(!this.username) {
-            var user = login.$.username;
-            user.className = "red";
+            login.$.toast1.show();
             return;
         }
         if(!this.password) {
-            var pass = this.$.password;
-            pass.className = "red";
+            login.$.toast1.show();
             return;
         }
         this.submit();

@@ -4,9 +4,16 @@ Polymer({
     ready: function() {
         app = this;
         this.loading = true;
+        this.logout = this.logoutFunc;
         this.loadApp();
     },
+    listeners: {
+        'login-start': 'checkLoginFunc'
+    },
     loadApp: function() {
+        app.showLogin = false;
+        app.showMain = false;
+        app.loading = true;
         $.ajax({
             method: "POST",
             dataType: "json",
@@ -27,7 +34,6 @@ Polymer({
             dataType: "json",
             url: "../../../../api/user:me"
         }).done(function(data) {
-            console.log(data);
             app.user = {};
             app.user.id = data.id;
             app.user.username = data.username;
@@ -37,7 +43,36 @@ Polymer({
         });
     },
     checkLoginFunc: function(event, detail, sender) {
-        alert("test");
+        var login = detail.me;
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "../../../../api/auth:login",
+            data: {
+                username: detail.username,
+                password: detail.password
+            }
+        }).done(function(data) {
+            if(data.status) {
+                app.loadApp();
+                login.cla = "";
+                login.username = "";
+                login.password = "";
+            } else {
+                login.cla = "red";
+                login.$.toast1.show();
+            }
+        });
+    },
+    logoutFunc: function() {
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "../../../../api/auth:logout"
+        }).done(function(data) {
+            app.loadApp();
+            login.$.toast1.hide();
+        });
     }
 });
 
