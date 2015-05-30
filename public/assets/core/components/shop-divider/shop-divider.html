@@ -1,7 +1,7 @@
-<polymer-element name="shop-divider" noscript>
+<dom-module id="shop-divider">
    <template>
      <style>
-    :host hr{
+    shop-divider>hr{
        position:relative;
            height: 1px;
            width: 100%;
@@ -12,5 +12,7 @@
      </style>
     <hr>
    </template>
- 
- </polymer-element>
+</dom-module>
+<script>
+  Polymer({is: "shop-divider"});
+</script>

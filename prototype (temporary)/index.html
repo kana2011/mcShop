@@ -1,42 +1,44 @@
 <!doctype HTML>
 <html>
     <head>
-		
         <title>mcShop</title>
         <meta name="viewport"content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
 		<script src="../public/assets/components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import"href="../public/assets/components/polymer/polymer.html">
-		<script src="../public/assets/components/core-focusable/polymer-mixin.js"></script>
-		<script src="../public/assets/components/core-focusable/core-focusable.js"></script>
-        <link rel="import"href="../public/assets/components/core-elements/core-elements.html">
-        <link rel="import"href="../public/assets/components/paper-elements/paper-elements.html">
+        <link rel="import"href="../public/assets/core/components/shop-elements/polymer-all-elements.html">
         <link rel="import"href="../public/assets/core/components/shop-elements/shop-elements.html">
-        <link rel="import"href="../public/assets/components/polymer-font-awesome-icons/fa-icons.html">
+        <link rel="import"href="../public/assets/components/fontawesome-iconset/fa-icons.html">
         <link rel="stylesheet"href="../public/assets/core/css/mcshop.css">
+        <style is="custom-style">
+            [mcShop-main] [drawer] {
+              border-right: 1px solid var(--google-grey-300);
+            }
+        </style>
     </head>
-    <body unresolved>
-        <core-drawer-panel responsiveWidth="1024px"transition id="core_drawer_panel"touch-action mcShop-main>
+    <body>
+        <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
         <section drawer>
-            <core-menu excludedLocalNames="shop-divider" itemsSelector="[clickable]" mcShop-menu>
-	            <paper-item clickable><core-icon icon="home"></core-icon>Home</paper-item>
-	            <paper-item clickable><core-icon icon="shopping-cart"></core-icon>Shop</paper-item>
-	            <paper-item clickable><core-icon icon="credit-card"></core-icon>Topup</paper-item>
-	            <paper-item clickable><core-icon icon="book"></core-icon>Wiki</paper-item>
+            <shop-userbadge></shop-userbadge>
+            <paper-menu selected="0" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
+	            <shop-drawer-item clickable><iron-icon icon="home"></iron-icon>Home</shop-drawer-item>
+	            <shop-drawer-item clickable><iron-icon icon="shopping-cart"></iron-icon>Shop</shop-drawer-item>
+	            <shop-drawer-item clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
+	            <shop-drawer-item clickable><iron-icon icon="book"></iron-icon>Wiki</shop-drawer-item>
 	            <shop-divider></shop-divider>
-	            <paper-item shop-showdialog><core-icon icon="fa:sign-in"></core-icon>Login</paper-item>
-	            <paper-item shop-showdialog><core-icon icon="fa:plus-circle"></core-icon>Register</paper-item>
-            </core-menu>
+	            <shop-drawer-item shop-showdialog><iron-icon icon="fa:sign-in"></iron-icon>Login</shop-drawer-item>
+	            <shop-drawer-item shop-showdialog><iron-icon icon="fa:plus-circle"></iron-icon>Register</shop-drawer-item>
+            </paper-menu>
         </section>
-        <core-scroll-header-panel condenses keepCondensedHeader id="core_scroll_header_panel"main>
-	        <core-toolbar class="tall"mcShop-toolbar>
-		        <paper-icon-button icon="menu"id="core_icon_button"core-drawer-toggle></paper-icon-button>
-		        <div id="div"flex></div>
-		        <paper-icon-button icon="search"id="core_icon_button1"></paper-icon-button>
-		        <paper-icon-button icon="more-vert"id="core_icon_button2"></paper-icon-button>
-		        <div class="bottom indent"mcShop-title>mcShop</div>
-	        </core-toolbar>
-	        <core-pages mcShop-contents>
+        <paper-scroll-header-panel condenses="true" main keepCondensedHeader="true">
+	        <paper-toolbar class="tall" mcShop-toolbar>
+		        <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+		        <div id="div" class="flex"></div>
+		        <paper-icon-button icon="search"></paper-icon-button>
+		        <paper-icon-button icon="more-vert"></paper-icon-button>
+		        <div class="bottom title" mcShop-title>mcShop</div>
+	        </paper-toolbar>
+	        <iron-pages selected="0" mcShop-contents>
 	        	<div>
 	        		<h2 mcShop-title-h2>Promotion</h2>
 	        	</div>
@@ -49,9 +51,9 @@
 	        	<div>
                     <h2 mcShop-title-h2>Wiki</h2>
                 </div>
-	        </core-pages>
-	        </core-scroll-header-panel>
-        </core-drawer-panel>
+	        </iron-pages>
+	    </paper-scroll-header-panel>
+        </paper-drawer-panel>
         <script src="../public/assets/core/js/mcshop.js"></script>
     </body>
 </html>
