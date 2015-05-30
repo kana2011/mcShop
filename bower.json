@@ -19,7 +19,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
     "iron-elements": "PolymerElements/iron-elements#^1.0.0",
-    "paper-elements": "PolymerElements/paper-elements#^1.0.0",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.1",
     "gold-elements": "PolymerElements/gold-elements#^1.0.0",
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
     "font-roboto": "Polymer/font-roboto#~0.5.6",
@@ -27,6 +27,6 @@
     "jquery": "~2.1.4"
   },
   "resolutions": {
-    "webcomponentsjs": "0.7.0"
+    "webcomponentsjs": "^0.7.2"
   }
 }
