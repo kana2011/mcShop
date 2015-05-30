@@ -36,7 +36,7 @@ Polymer({
             app.showMain = true;
         });
     },
-    checkLoginFunc: function() {
+    checkLoginFunc: function(event, detail, sender) {
         alert("test");
     }
 });

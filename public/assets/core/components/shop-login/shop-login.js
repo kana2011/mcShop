@@ -3,7 +3,8 @@ Polymer({
     is: 'shop-login',
     ready: function() {
         login = this;
-        this.onbuttonclick = this.validate;
+        this.validate;
+        this.title;
     },
     validate: function() {
         login.submit();

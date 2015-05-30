@@ -6,13 +6,13 @@
         <link rel="stylesheet" href="shop-login.css">
         <div class="center parent main">
             <paper-material class="center child login-window">
-                <h1>{{name}}</h1>
+                <h1><span>{{title}}</span></h1>
                 <paper-input id="username" class="{{cla}}" value="{{username}}" label="Username" disabled?="{{dis}}"></paper-input><br>
                 <paper-input id="password" class="{{cla}}" value="{{password}}" type="password" label="Password" disabled?="{{dis}}"></paper-input><br><br>
                 <div layout horizontal>
                     <div flex></div>
                     <div>
-                        <paper-button class="login-button" onclick="{{onbuttonclick}}" disabled?="{{dis}}" raised>Login <core-icon icon="fa:arrow-right"></core-icon></paper-button>
+                        <paper-button class="login-button" onclick="{{validate}}" disabled?="{{dis}}" raised>Login <core-icon icon="fa:arrow-right"></core-icon></paper-button>
                     </div>
                 </div>
             </paper-material>
