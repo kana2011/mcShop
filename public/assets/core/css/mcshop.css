@@ -22,8 +22,7 @@ body {
 }
 [mcShop-toolbar] {
   color: rgb(241, 241, 241);
-  fill: rgb(241, 241, 241);
-  background-color: rgb(66, 133, 244)
+  background-color: transparent !important;
 }
 [mcShop-contents] > div{
   padding: 16px;
@@ -31,16 +30,9 @@ body {
   background: #FEFEFE
 }
 [mcShop-title] {
-  font-size: 32px
-}
-[mcShop-toolbar] {
-  background: none
-}
-[mcShop-tabs]{
-  background: #4285F4;
-}
-#core_scroll_header_panel {
-  position: relative:
+  margin-left: 60px;
+  font-size: 32px !important;
+  overflow: visible !important;
 }
 [drawer] {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
@@ -49,16 +41,16 @@ body {
 [narrow] > [drawer]{
   box-shadow: none !important;
 }
-[drawer]>core-menu>paper-item>core-icon {
+[drawer]>paper-menu shop-drawer-item>iron-icon {
   margin: 0 16px 0 0
 }
 [drawer]>core-menu {
   margin: 0
 }
-core-scroll-header-panel::shadow .bg-container {
+paper-scroll-header-panel .bg-container {
   background: #4285F4
 }
-core-scroll-header-panel::shadow #headerBg {
+paper-scroll-header-panel #headerBg {
   background: url('../../../images/bg.png');
   background-size: cover;
   background-position: 75%
@@ -76,15 +68,9 @@ a {
   text-decoration: none
 }
 
-/* firefox temporary fix */
-core-scroll-header-panel .bg-container {
-  background: #4285F4
-}
-core-scroll-header-panel #headerBg {
-  background: url('../../../images/bg.png');
-  background-size: cover;
-  background-position: 75%
-}
 [drawer]>core-menu>paper-item core-icon {
   margin: 0 16px 0 0
+}
+shop-drawer-item[tabindex='0']{
+  font-weight: 500;
 }
