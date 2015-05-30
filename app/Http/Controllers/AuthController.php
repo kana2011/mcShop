@@ -48,4 +48,8 @@ class AuthController extends Controller {
         }
     }
 
+    public function Me(){
+        return view("json")->with(array("json" => array("accname" => "Kosaki Onodera", "username" => "kana2011th")));
+    }
+
 }

@@ -17,7 +17,7 @@ class ApiController extends Controller {
 		return $this->$requests($input);
 	}
 	
-	public function itemlist($input){
+	public function itemlist(){
 		//sample data
 		$item = array();
 		array_push($item,array("itemID" => 1,"itemName" => "ดาบตีล้านๆ","itemDesc" => "ดาบที่แมร่งไม่มีใครหาได้สักคนนอกจากแอดมิน Reimu เสกให้","itemPrice" => 6666666));
