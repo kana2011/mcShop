@@ -15,7 +15,9 @@ Polymer({
             if(data.result) {
                 app.loadData();
             } else {
-                
+                app.loading = false;
+                app.showLogin = true;
+                app.checkLogin = app.checkLoginFunc;
             }
         });
     },
@@ -34,8 +36,8 @@ Polymer({
             app.showMain = true;
         });
     },
-    checkLogin: function() {
-        
+    checkLoginFunc: function() {
+        alert("test");
     }
 });
 

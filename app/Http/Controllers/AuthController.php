@@ -42,18 +42,9 @@ class AuthController extends Controller {
         return $this->json(array("result" => Auth::check()));
     }
     
-    public function Logout() {
-        if(Auth::logout()) {
-            return view("json")->with(array("json" => array("status" => true)));
-        } else {
-            return view("json")->with(array("json" => array("status" => false,
-                                                                "error" => "unknown_error"
-                                                               )));
-        }
-    }
-
-    public function Me(){
-        return view("json")->with(array("json" => array("accname" => "Kosaki Onodera", "username" => "kana2011th")));
+    public function logout() {
+        Auth::logout();
+        return view("json")->with(array("json" => array("status" => true)));
     }
 
 }

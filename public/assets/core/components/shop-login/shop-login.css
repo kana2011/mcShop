@@ -1,0 +1,68 @@
+paper-input {
+    text-align: left;
+}
+
+.login-window {
+    display: block;
+    background-color: #ffffff;
+    height: 280px;
+    width: 400px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.main {
+    font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #00bcd4;
+}
+
+.center .parent {
+    position: relative;
+}
+
+.center .child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+paper-input {
+    width: 100%;
+}
+
+paper-input-password {
+    width: 100%;
+}
+
+.login-button {
+    background-color: #FFEB3B;
+}
+
+.red /deep/ .unfocused-underline {
+    /* line color when the input is unfocused */
+    background-color: #d34336;
+}
+
+.red /deep/ .focused-underline {
+    /* line color when the input is focused */
+    background-color: #d34336;
+}
+
+.red /deep/ ::-webkit-input-placeholder {
+    /* platform specific rules for placeholder text */
+    color: #d34336;
+}
+.red /deep/ ::-moz-placeholder {
+    color: #d34336;
+}
+.red /deep/ :-ms-input-placeholder {
+    color: #d34336;
+}

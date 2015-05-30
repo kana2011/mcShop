@@ -1,7 +1,8 @@
-<link rel="import"href="../../../core/components/shop-elements/polymer-all-elements.html">
-<link rel="import"href="../../../core/components/shop-elements/shop-elements.html">
-<link rel="import"href="../../../components/fontawesome-iconset/fa-icons.html">
-<dom-module name="shop-main" attributes="title">
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-elements/shop-elements.html">
+<link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
+<link rel="import" href="../shop-login/shop-login.html">
+<dom-module name="shop-main" on-login-start="{{checkLogin}}" attributes="title">
     <template>
         <link rel="stylesheet" href="shop-main.css">
         <template if="{{loading}}" is="dom-if" id="loadingScreen">
@@ -22,8 +23,7 @@
                         <shop-drawer-item clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
                         <shop-drawer-item clickable><iron-icon icon="book"></iron-icon>Wiki</shop-drawer-item>
                         <shop-divider></shop-divider>
-                        <shop-drawer-item shop-showdialog><iron-icon icon="fa:sign-in"></iron-icon>Login</shop-drawer-item>
-                        <shop-drawer-item shop-showdialog><iron-icon icon="fa:plus-circle"></iron-icon>Register</shop-drawer-item>
+                        <shop-drawer-item shop-showdialog><iron-icon icon="fa:sign-out"></iron-icon>Logout</shop-drawer-item>
                     </paper-menu>
                 </section>
                 <paper-scroll-header-panel condenses="true" main keepCondensedHeader="true">
@@ -50,6 +50,9 @@
                     </iron-pages>
                 </paper-scroll-header-panel>
             </paper-drawer-panel>
+        </template>
+        <template if="{{showLogin}}" is="dom-if">
+            <shop-login title="{{title}}"></shop-login>
         </template>
     </template>
     <script src="../../../components/jquery/dist/jquery.min.js"></script>

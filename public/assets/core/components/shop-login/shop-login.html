@@ -1,0 +1,23 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-elements/shop-elements.html">
+<link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
+<dom-module name="shop-login" attributes="title">
+    <template>
+        <link rel="stylesheet" href="shop-login.css">
+        <div class="center parent main">
+            <paper-material class="center child login-window">
+                <h1>{{name}}</h1>
+                <paper-input id="username" class="{{cla}}" value="{{username}}" label="Username" disabled?="{{dis}}"></paper-input><br>
+                <paper-input id="password" class="{{cla}}" value="{{password}}" type="password" label="Password" disabled?="{{dis}}"></paper-input><br><br>
+                <div layout horizontal>
+                    <div flex></div>
+                    <div>
+                        <paper-button class="login-button" onclick="{{onbuttonclick}}" disabled?="{{dis}}" raised>Login <core-icon icon="fa:arrow-right"></core-icon></paper-button>
+                    </div>
+                </div>
+            </paper-material>
+        </div>
+        
+    </template>
+    <script src="shop-login.js"></script>
+</polymer-element>
