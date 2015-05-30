@@ -12,4 +12,4 @@
     <body unresolved>
         <shop-main title="{{$title}}"></shop-main>
     </body>
-</html
+</html>

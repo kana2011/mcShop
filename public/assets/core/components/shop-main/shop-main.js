@@ -1,8 +1,42 @@
-Polymer({is: "shop-main"}, {
+var app;
+Polymer({
+    is: "shop-main",
     ready: function() {
-        
+        app = this;
+        this.loading = true;
+        this.loadApp();
     },
-    loading: true
+    loadApp: function() {
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "../../../../api/auth:check"
+        }).done(function(data) {
+            if(data.result) {
+                app.loadData();
+            } else {
+                
+            }
+        });
+    },
+    loadData: function() {
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "../../../../api/user:me"
+        }).done(function(data) {
+            console.log(data);
+            app.user = {};
+            app.user.id = data.id;
+            app.user.username = data.username;
+            app.user.money = data.money;
+            app.loading = false;
+            app.showMain = true;
+        });
+    },
+    checkLogin: function() {
+        
+    }
 });
 
 // custom transformation: scale header's title

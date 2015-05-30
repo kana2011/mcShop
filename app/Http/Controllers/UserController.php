@@ -3,6 +3,7 @@
 use DB;
 use Auth;
 use App\Models\User;
+use App\Exceptions\NotLoggedInException;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller {
@@ -10,11 +11,14 @@ class UserController extends Controller {
     private $user;
     
     public function __construct() {
-        $this->middleware('auth');
-        $this->user = Auth::user();
+        if(Auth::check()) {
+            $this->user = Auth::user();
+        } else {
+            throw new NotLoggedInException;
+        }
     }
 
-    public function myInfo() {
+    public function me() {
         return $this->json($this->user->getPublicInfo());
     }
 

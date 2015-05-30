@@ -1,6 +1,16 @@
 body {
   font-family: 'Roboto'
 }
+.center .parent {
+    position: relative;
+}
+.center .child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 :host {
   position: absolute;
   width: 100%;

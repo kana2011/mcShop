@@ -38,6 +38,10 @@ class AuthController extends Controller {
         }
     }
     
+    public function check() {
+        return $this->json(array("result" => Auth::check()));
+    }
+    
     public function Logout() {
         if(Auth::logout()) {
             return view("json")->with(array("json" => array("status" => true)));

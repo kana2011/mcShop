@@ -1,4 +1,4 @@
-<dom-module id="shop-userbadge">
+<dom-module id="shop-userbadge" attributes="user">
     <style>
     	:host{
     		position: relative;
@@ -37,13 +37,10 @@
     	}
     </style>
   	<template>
-	    <iron-ajax method="POST" auto url="../../../../api/auth:me" handle-as="json" on-response="response" lastResponse="{{shopacc}}" debounce-duration="300"></iron-ajax>
-	    <div id="userBadgeLoader">
-	    	<paper-spinner active></paper-spinner>
-	    </div>
+	    <!--<iron-ajax method="POST" auto url="../../../../api/user:me" handle-as="json" on-response="response" lastResponse="{{shopacc}}" debounce-duration="300"></iron-ajax>-->
 	    <div id="userBadgeInner">
-	    	<span id="userBadgeImage"><img src=""></span>
-	    	<span id="userBadgeName"><span></span></span>
+	    	<span id="userBadgeImage"><img src="{{avatar}}"></span>
+	    	<span id="userBadgeName"><span>{{username}}</span></span>
 	    </div>
   	</template>
 </dom-module>
@@ -53,13 +50,12 @@
 		created: function(){
 			this.style.height = ((9/16)*256)+"px";
 		},
+        ready: function() {
+            this.username = this.user.username;
+            this.avatar = "https://minotar.net/avatar/" + this.username;
+        },
 		response: function(data){
-			document.getElementById("userBadgeName").children[0].innerHTML = data.detail.response.accname;
 			document.getElementById("userBadgeImage").children[0].src = "https://minotar.net/avatar/"+data.detail.response.username;
-			//document.getElementById("userBadgeName").innerHTML = data.detail.response.userid;
-			document.getElementById("userBadgeLoader").style.backgroundColor = "rgba(0, 0, 0, 0)";
-			document.getElementById("userBadgeLoader").children[0].active = false;
-			console.log(data.detail.response);
 		},
 	})
 </script>
