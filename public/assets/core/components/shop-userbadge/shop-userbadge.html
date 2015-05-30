@@ -37,7 +37,7 @@
     	}
     </style>
   	<template>
-	    <iron-ajax method="POST" auto url="http://localhost/mcShop2/public/api/auth:me" handle-as="json" on-response="response" lastResponse="{{shopacc}}" debounce-duration="300"></iron-ajax>
+	    <iron-ajax method="POST" auto url="../../../../api/auth:me" handle-as="json" on-response="response" lastResponse="{{shopacc}}" debounce-duration="300"></iron-ajax>
 	    <div id="userBadgeLoader">
 	    	<paper-spinner active></paper-spinner>
 	    </div>

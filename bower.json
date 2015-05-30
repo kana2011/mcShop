@@ -24,7 +24,11 @@
     "neon-elements": "PolymerElements/neon-elements#~1.0.0",
     "gold-elements": "PolymerElements/gold-elements#~1.0.0",
     "font-roboto": "Polymer/font-roboto#~0.5.6",
-    "fontawesome-iconset": "vangware/fontawesome-iconset#master"
+    "fontawesome-iconset": "vangware/fontawesome-iconset#master",
+    "iron-behaviors": "PolymerElements/iron-behaviors#~1.0.1",
+    "paper-behaviors": "PolymerElements/paper-behaviors#~1.0.0",
+    "platinum-elements": "PolymerElements/platinum-elements#~1.0.0",
+    "platinum-sw": "PolymerElements/platinum-sw#~1.0.0"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.2",

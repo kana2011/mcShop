@@ -1,0 +1,47 @@
+<link rel="import"href="../../../core/components/shop-elements/polymer-all-elements.html">
+<link rel="import"href="../../../core/components/shop-elements/shop-elements.html">
+<link rel="import"href="../../../components/fontawesome-iconset/fa-icons.html">
+<dom-module name="shop-main" attributes="title">
+    <template>
+        <link rel="stylesheet" href="shop-main.css">
+        <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
+            <section drawer>
+                <shop-userbadge></shop-userbadge>
+                <paper-menu selected="0" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
+                    <shop-drawer-item clickable><iron-icon icon="home"></iron-icon>Home</shop-drawer-item>
+                    <shop-drawer-item clickable><iron-icon icon="shopping-cart"></iron-icon>Shop</shop-drawer-item>
+                    <shop-drawer-item clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
+                    <shop-drawer-item clickable><iron-icon icon="book"></iron-icon>Wiki</shop-drawer-item>
+                    <shop-divider></shop-divider>
+                    <shop-drawer-item shop-showdialog><iron-icon icon="fa:sign-in"></iron-icon>Login</shop-drawer-item>
+                    <shop-drawer-item shop-showdialog><iron-icon icon="fa:plus-circle"></iron-icon>Register</shop-drawer-item>
+                </paper-menu>
+            </section>
+            <paper-scroll-header-panel condenses="true" main keepCondensedHeader="true">
+                <paper-toolbar class="tall" mcShop-toolbar>
+                    <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+                    <div id="div" class="flex"></div>
+                    <paper-icon-button icon="search"></paper-icon-button>
+                    <paper-icon-button icon="more-vert"></paper-icon-button>
+                    <div class="bottom title" mcShop-title>mcShop</div>
+                </paper-toolbar>
+                <iron-pages selected="0" mcShop-contents>
+                    <div>
+                        <h2 mcShop-title-h2>Promotion</h2>
+                    </div>
+                    <div>
+                        <h2 mcShop-title-h2>Shop</h2>
+                    </div>
+                    <div>
+                        <h2 mcShop-title-h2>Topup</h2>
+                    </div>
+                    <div>
+                        <h2 mcShop-title-h2>Wiki</h2>
+                    </div>
+                </iron-pages>
+            </paper-scroll-header-panel>
+        </paper-drawer-panel>
+    </template>
+    <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="shop-main.js"></script>
+</dom-module>
