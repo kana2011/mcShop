@@ -2,6 +2,7 @@
 <link rel="import" href="../shop-elements/shop-elements.html">
 <link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
 <link rel="import" href="../shop-login/shop-login.html">
+<link rel="import" href="../shop-listing/shop-listing.html">
 <dom-module name="shop-main" on-login-start="{{checkLogin}}" attributes="title">
     <template>
         <link rel="stylesheet" href="shop-main.css">
@@ -17,10 +18,10 @@
             <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
                 <section drawer>
                     <shop-userbadge user="{{user}}"></shop-userbadge>
-                    <paper-menu selected="0" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
+                    <paper-menu selected="{{selectedPage}}" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
                         <shop-drawer-item clickable><iron-icon icon="home"></iron-icon>Home</shop-drawer-item>
                         <shop-drawer-item clickable><iron-icon icon="shopping-cart"></iron-icon>Shop</shop-drawer-item>
-                        <shop-drawer-item clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
+                        <shop-drawer-item clickable><iron-icon item-icon icon="credit-card"></iron-icon>Transactions</shop-drawer-item>
                         <shop-drawer-item clickable><iron-icon icon="book"></iron-icon>Wiki</shop-drawer-item>
                         <shop-divider></shop-divider>
                         <shop-drawer-item onclick="{{logout}}"><iron-icon icon="fa:sign-out"></iron-icon>Logout</shop-drawer-item>
@@ -34,15 +35,15 @@
                         <paper-icon-button icon="more-vert"></paper-icon-button>
                         <div class="bottom title" mcShop-title>{{title}}</div>
                     </paper-toolbar>
-                    <iron-pages selected="0" mcShop-contents>
+                    <iron-pages selected="{{selectedPage}}" mcShop-contents>
                         <div>
                             <h2 mcShop-title-h2>Promotion</h2>
                         </div>
-                        <div>
-                            <h2 mcShop-title-h2>Shop</h2>
+                        <div nopadding>
+                            <shop-listing data="{{shop}}"></shop-listing>
                         </div>
                         <div>
-                            <h2 mcShop-title-h2>Topup</h2>
+                            <h2 mcShop-title-h2>Transactions</h2>
                         </div>
                         <div>
                             <h2 mcShop-title-h2>Wiki</h2>

@@ -7,16 +7,19 @@ Polymer({
         this.title;
     },
     validate: function() {
+        if(!login.username) {
+            login.$.username.setAttribute("invalid", true);
+            return;
+        } else {
+            login.$.username.removeAttribute("invalid");
+        }
+        if(!login.password) {
+            login.$.password.setAttribute("invalid", true);
+            return;
+        } else {
+            login.$.password.removeAttribute("invalid");
+        }
         login.submit();
-        if(!this.username) {
-            login.$.toast1.show();
-            return;
-        }
-        if(!this.password) {
-            login.$.toast1.show();
-            return;
-        }
-        this.submit();
     },
     submit: function() {
         this.fire('login-start', {

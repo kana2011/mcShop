@@ -1,0 +1,28 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-elements/shop-elements.html">
+<link rel="import" href="animated-grid.html">
+<link rel="import" href="fullsizepage-with-card.html">
+<link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
+<dom-module name="shop-listing" attributes="{{data}}">
+    <template>
+        <link rel="stylesheet" href="shop-listing.css">
+        <paper-tabs selected="{{selectedGroup}}">
+            <template is="dom-repeat" items="{{data}}">
+                <paper-tab>{{item.dispname}}</paper-tab>
+            </template>
+        </paper-tabs>
+        <neon-animated-pages entry-animation="slide-from-right-animation" exit-animation="slide-left-animation" selected="{{selectedGroup}}" selectedindex="0" notap>
+            <template is="dom-repeat" items="{{data}}">
+                <neon-animatable one flex horizontal layout>
+                    <neon-animated-pages id="pages" selected="0">
+                        <animated-grid on-tile-click="_onTileClick"></animated-grid>
+                        <fullsize-page-with-card id="fullsize-card" hero-id="hero" on-click="_onFullsizeClick">
+                        </fullsize-page-with-card>
+                    </neon-animated-pages>
+                </neon-animatable>
+            </template>
+        </neon-animated-pages>
+    </template>
+    <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="shop-listing.js"></script>
+</dom-module>

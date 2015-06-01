@@ -1,12 +1,9 @@
 var app;
 Polymer({
-    is: "shop-main",
+    is: "shop-listing",
     ready: function() {
-        app = this;
-        this.loading = true;
-        this.logout = this.logoutFunc;
-        this.selectedPage = 1;
-        this.loadApp();
+        listing = this;
+        this.selectedGroup = 0;
     },
     listeners: {
         'login-start': 'checkLoginFunc'

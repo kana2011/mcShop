@@ -9,9 +9,9 @@ use App\Minecraft\MinecraftConnection as Minecraft;
 use App\Http\Controllers\Controller;
 
 class ShopController extends Controller {
-    
+
     private $user;
-    
+
     public function __construct() {
         if(Auth::check()) {
             $this->user = Auth::user();
@@ -25,13 +25,13 @@ class ShopController extends Controller {
         $result = array();
         $groups = DB::select('select * from shopgroup');
         foreach($groups as $group) {
-            $items = DB::select('select id, dispname, igroup, icomment, cost from shopitem where igroup = ?', [$group->id]);
+            $items = DB::select('select id, dispname, igroup, icomment, price from shopitem where igroup = ?', [$group->id]);
             $group->items = $items;
             $result[] = $group;
         }
         return $this->success($result);
     }
-        
+
     public function buy() {
         $item = ShopItem::where('id', '=', Input::get('itemid'))->firstOrFail();
         if($this->user->getMoney() >= $item->price) {
