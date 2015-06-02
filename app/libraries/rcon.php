@@ -24,15 +24,18 @@ class RCon {
 		$this->Password = $Password;
 		$this->Host = $Host;
 		$this->Port = $Port;
-		$this->_Sock = @fsockopen($this->Host,$this->Port, $errno, $errstr, 30) or
-	    		die("Unable to open socket: $errstr ($errno)\n");
-		$this->_Set_Timeout($this->_Sock,2,500);
-    	}
+		$this->_Sock = @fsockopen($this->Host,$this->Port, $errno, $errstr, 30);
+		if($this->_Sock) {
+			$this->_Set_Timeout($this->_Sock,2,500);
+		} else {
+			return false;
+		}
+    }
 
-	function Auth () {        
+	function Auth () {
         if($this->_Sock == null)
             return false;
-        
+
 		$PackID = $this->_Write(SERVERDATA_AUTH,$this->Password);
 
 		// Real response (id: -1 = failure)

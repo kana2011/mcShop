@@ -79,10 +79,23 @@ a {
   color: #555555;
   text-decoration: none
 }
-
 [drawer]>core-menu>paper-item core-icon {
   margin: 0 16px 0 0
 }
 shop-drawer-item[tabindex='0']{
   font-weight: 500;
+}
+#itemDialog {
+    width: 700px;
+    height: 400px;
+}
+.btn-green {
+    color: #4caf50;
+}
+.btn-green [raised] {
+    color: #ffffff;
+    background-color: #4caf50;
+}
+#mainToast {
+    z-index: 100;
 }

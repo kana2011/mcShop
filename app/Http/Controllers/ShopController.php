@@ -44,6 +44,8 @@ class ShopController extends Controller {
                 $this->user->makeTransaction($item->price, "Order failed: Server offline.");
                 return $this->failed("server_offline");
             }
+        } else {
+            return $this->failed("not_enough_money");
         }
     }
 

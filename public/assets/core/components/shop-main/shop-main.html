@@ -6,6 +6,7 @@
 <dom-module name="shop-main" on-login-start="{{checkLogin}}" attributes="title">
     <template>
         <link rel="stylesheet" href="shop-main.css">
+        <paper-toast id="mainToast" text=""></paper-toast>
         <template if="{{loading}}" is="dom-if" id="loadingScreen">
             <div class="center parent">
                 <div class="center child">
@@ -14,6 +15,19 @@
                 </div>
             </div>
         </template>
+        <paper-dialog id="itemDialog" with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <h2 id="itemDialogTitle"></h2>
+            <div id="itemDialogContent" class="flex">
+
+            </div>
+            <div id="itemDialogButtons" class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button class="btn-green" on-tap="buyItem" dialog-confirm autofocus>Buy</paper-button>
+            </div>
+        </paper-dialog>
+        <paper-dialog id="loadingDialog" modal entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <paper-spinner active></paper-spinner> Loading...
+        </paper-dialog>
         <template if="{{showMain}}" is="dom-if">
             <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
                 <section drawer>

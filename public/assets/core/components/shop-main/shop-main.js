@@ -9,7 +9,8 @@ Polymer({
         this.loadApp();
     },
     listeners: {
-        'login-start': 'checkLoginFunc'
+        'login-start': 'checkLoginFunc',
+        'open-item-dialog': 'openItemDialog'
     },
     loadApp: function() {
         app.showLogin = false;
@@ -18,7 +19,7 @@ Polymer({
         $.ajax({
             method: "POST",
             dataType: "json",
-            url: "../../../../api/auth:check"
+            url: "api/auth:check"
         }).done(function(data) {
             if(data.result) {
                 app.loadData();
@@ -33,7 +34,7 @@ Polymer({
         $.ajax({
             method: "POST",
             dataType: "json",
-            url: "../../../../api/user:shop"
+            url: "api/user:shop"
         }).done(function(data) {
             app.user = {};
             app.user.id = data.id;
@@ -66,11 +67,37 @@ Polymer({
             }
         });
     },
+    openItemDialog: function(event, detail, sender) {
+        var data = detail.data;
+        this.itemData = data;
+        $(this.$.itemDialogTitle).html(data.dispname);
+        this.$.itemDialog.open();
+    },
+    buyItem: function() {
+        this.$.loadingDialog.open();
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "api/shop:buy",
+            data: {
+                itemid: this.itemData.id
+            }
+        }).done(function(data) {
+            app.$.loadingDialog.close();
+            if(data.status) {
+                $(app.$.mainToast).attr("text", "Item bought");
+                app.$.mainToast.show();
+            } else {
+                $(app.$.mainToast).attr("text", capitalizeFirstLetter(lodashToSpace(data.error)));
+                app.$.mainToast.show();
+            }
+        });
+    },
     logoutFunc: function() {
         $.ajax({
             method: "POST",
             dataType: "json",
-            url: "../../../../api/auth:logout"
+            url: "api/auth:logout"
         }).done(function(data) {
             app.loadApp();
             login.$.toast1.hide();
@@ -101,3 +128,11 @@ addEventListener('core-responsive-change', function (e) {
 
 	}
 })
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function lodashToSpace(string) {
+    return string.split("_").join(" ");
+}
