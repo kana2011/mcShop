@@ -26,7 +26,8 @@
             </div>
         </paper-dialog>
         <paper-dialog id="loadingDialog" modal entry-animation="scale-up-animation" exit-animation="fade-out-animation">
-            <paper-spinner active></paper-spinner> Loading...
+            <paper-spinner active></paper-spinner>
+            <div class="loadingContainer">Loading...</div>
         </paper-dialog>
         <template if="{{showMain}}" is="dom-if">
             <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
@@ -49,20 +50,20 @@
                         <paper-icon-button icon="more-vert"></paper-icon-button>
                         <div class="bottom title" mcShop-title>{{title}}</div>
                     </paper-toolbar>
-                    <iron-pages selected="{{selectedPage}}" mcShop-contents>
-                        <div>
+                    <neon-animated-pages selected="{{selectedPage}}" entry-animation="fade-in-animation" exit-animation="fade-out-animation" mcShop-contents>
+                        <neon-animatable>
                             <h2 mcShop-title-h2>Promotion</h2>
-                        </div>
-                        <div nopadding>
+                        </neon-animatable>
+                        <neon-animatable nopadding>
                             <shop-listing data="{{shop}}"></shop-listing>
-                        </div>
-                        <div>
+                        </neon-animatable>
+                        <neon-animatable>
                             <h2 mcShop-title-h2>Transactions</h2>
-                        </div>
-                        <div>
+                        </neon-animatable>
+                        <neon-animatable>
                             <h2 mcShop-title-h2>Wiki</h2>
-                        </div>
-                    </iron-pages>
+                        </neon-animatable>
+                    </neon-animated-pages>
                 </paper-scroll-header-panel>
             </paper-drawer-panel>
         </template>

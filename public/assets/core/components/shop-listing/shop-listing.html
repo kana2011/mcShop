@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="shop-listing.css">
         <paper-tabs selected="{{selectedGroup}}">
             <template is="dom-repeat" items="{{data}}" as="group">
-                <paper-tab><span>{{group.dispname}}</span></paper-tab>
+                <paper-tab>{{group.dispname}}</paper-tab>
             </template>
         </paper-tabs>
         <neon-animated-pages selected="{{selectedGroup}}" entry-animation="slide-from-right-animation" exit-animation="slide-left-animation">

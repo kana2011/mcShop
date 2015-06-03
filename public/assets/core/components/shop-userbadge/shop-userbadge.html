@@ -14,32 +14,49 @@
     	}
     	:host #userBadgeInner>span#userBadgeName{
     		flex: 1;
+            color: #FFF;
+            display: block;
+            position: absolute;
+            left: 0; bottom: 0;
+            margin: 0.9em 1em;
+            z-index: 4;
     	}
     	:host #userBadgeInner>span{
     		flex: 2;
-    		padding: 16px;
+    		padding: 0;
     		display: flex;
     		align-items: center;
     	}
+    	:host #userBadgeImage>{
+    		background-color: #FFF;
+    		width: 256px;
+    		height: 256px;
+    	}
     	:host #userBadgeImage>img{
-    		border-radius: 50%;
-    		background-color: #FFF;
-    		width: 48px;
-    		height: 48px;
+    		width: 256px;
+    		height: 256px;
     	}
-    	:host #userBadgeLoader{
-    		position: absolute;
-    		left: 0;top: 0;
-    		align-items: center;
-    		justify-content: center;
-    		background-color: #FFF;
-    		transition: background-color 0.5s ease-out;
-    	}
+        :host #textProtection{
+            display: block;
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 100%;
+            height: 75px;
+            z-index: 3;
+            background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.50) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.50)));
+            background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.50) 100%);
+            background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.50) 100%);
+            background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.50) 100%);
+            background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.50) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+        }
     </style>
   	<template>
 	    <!--<iron-ajax method="POST" auto url="../../../../api/user:me" handle-as="json" on-response="response" lastResponse="{{shopacc}}" debounce-duration="300"></iron-ajax>-->
 	    <div id="userBadgeInner">
-	    	<span id="userBadgeImage"><img src="{{avatar}}"></span>
+	    	<!--<span id="userBadgeImage"><img src="{{avatar}}"></span>-->
+            <div id="textProtection"></div>
 	    	<span id="userBadgeName"><span>{{username}}</span></span>
 	    </div>
   	</template>
@@ -48,14 +65,15 @@
 	Polymer({
 		is: "shop-userbadge",
 		created: function(){
-			this.style.height = ((9/16)*256)+"px";
+			this.style.height = "256px";
 		},
         ready: function() {
             this.username = this.user.username;
-            this.avatar = "https://minotar.net/avatar/" + this.username;
+            this.avatar = "https://minotar.net/avatar/" + this.username + "/256";
+            $(this.$.userBadgeInner).css("background-image", "url(https://minotar.net/avatar/" + this.username + "/256)");
         },
 		response: function(data){
-			document.getElementById("userBadgeImage").children[0].src = "https://minotar.net/avatar/"+data.detail.response.username;
+			this.$.userBadgeImage.children[0].src = "https://minotar.net/avatar/"+data.detail.response.username;
 		},
 	})
 </script>
