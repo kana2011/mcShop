@@ -1,0 +1,30 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-item/shop-item.html">
+
+<dom-module name="shop-transactions" attributes="{{transactions}}">
+    <template>
+        <link rel="stylesheet" href="shop-transactions.css">
+        <table id="table" class="table table-hover">
+            <thead>
+                <tr>
+                     <th>TXID</th>
+                     <th>Description</th>
+                     <th>Amount</th>
+                     <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template is="dom-repeat" items="{{transactions}}" as="transaction">
+                    <tr>
+                        <td data-title="TXID">{{transaction.id}}</td>
+                        <td data-title="Description">{{transaction.description}}</td>
+                        <td data-title="Amount">{{transaction.amount}}</td>
+                        <td data-title="Time">{{transaction.created_at}}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+    <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="shop-transactions.js"></script>
+</dom-module>

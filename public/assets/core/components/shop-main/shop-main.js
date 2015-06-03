@@ -23,6 +23,7 @@ Polymer({
         }).done(function(data) {
             if(data.result) {
                 app.loadData();
+                app.loadTransactions();
             } else {
                 app.loading = false;
                 app.showLogin = true;
@@ -43,6 +44,15 @@ Polymer({
             app.shop = data.shop;
             app.loading = false;
             app.showMain = true;
+        });
+    },
+    loadTransactions: function() {
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "api/user:transactions"
+        }).done(function(data) {
+            app.transactions = data.result;
         });
     },
     checkLoginFunc: function(event, detail, sender) {
@@ -84,6 +94,7 @@ Polymer({
             }
         }).done(function(data) {
             app.$.loadingDialog.close();
+            app.loadTransactions();
             if(data.status) {
                 $(app.$.mainToast).attr("text", "Item bought");
                 app.$.mainToast.show();

@@ -35,4 +35,8 @@ class UserController extends Controller {
         return $this->json($fResult);
     }
 
+    public function transactions() {
+        return $this->success($this->user->getTransactions());
+    }
+
 }

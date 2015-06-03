@@ -3,6 +3,7 @@
 <link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
 <link rel="import" href="../shop-login/shop-login.html">
 <link rel="import" href="../shop-listing/shop-listing.html">
+<link rel="import" href="../shop-transactions/shop-transactions.html">
 <dom-module name="shop-main" on-login-start="{{checkLogin}}" attributes="title">
     <template>
         <link rel="stylesheet" href="shop-main.css">
@@ -59,6 +60,7 @@
                         </neon-animatable>
                         <neon-animatable>
                             <h2 mcShop-title-h2>Transactions</h2>
+                            <shop-transactions transactions="{{transactions}}"></shop-transactions>
                         </neon-animatable>
                         <neon-animatable>
                             <h2 mcShop-title-h2>Wiki</h2>

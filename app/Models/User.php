@@ -16,7 +16,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	protected $fillable = ['username', 'password', 'money'];
 
 	protected $hidden = ['password', 'remember_token'];
-    
+
     public function getPublicInfo() {
         $info = array();
         $info['id'] = $this->id;
@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $info['money'] = $this->getMoney();
         return $info;
     }
-    
+
     public function makeTransaction($amount, $description) {
         $transaction = new Transaction;
         $transaction->user_id = $this->id;
@@ -32,14 +32,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $transaction->description = $description;
         $transaction->save();
     }
-    
+
     public function getMoney() {
         $sum = 0;
-        $transactions = Transactions::where('user_id', '=', $this->id)->get()->all();
+        $transactions = $this->getTransactions();
         foreach($transactions as $transaction) {
             $sum = $sum + $transaction->amount;
         }
         return $sum;
     }
+
+	public function getTransactions() {
+		return Transactions::where('user_id', '=', $this->id)->orderBy('created_at', 'desc')->get()->all();
+	}
 
 }
