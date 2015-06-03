@@ -66,3 +66,19 @@ paper-input-password {
 .red /deep/ :-ms-input-placeholder {
     color: #d34336;
 }
+
+/* For mobile devices */
+@media screen and (max-width: 640px) {
+    .main {
+        background-color: #ffffff;
+    }
+
+    paper-material.paper-material-0[elevation="1"].login-window {
+        box-shadow: none;
+        width: 90%;
+        padding: 0;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+}
