@@ -42,9 +42,15 @@ body {
     padding: 0;
 }
 [mcShop-title] {
-  margin-left: 60px;
-  font-size: 32px !important;
-  overflow: visible !important;
+    margin-left: 48px;
+    font-size: 32px !important;
+    overflow: visible !important;
+    position: relative;
+    top: -8px;
+}
+paper-drawer-panel:not([narrow]) [mcShop-title] {
+    margin-left: 0px;
+    top: 0;
 }
 [drawer] {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
