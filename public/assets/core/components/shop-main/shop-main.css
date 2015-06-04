@@ -116,3 +116,15 @@ shop-drawer-item[tabindex='0']{
 shop-drawer-item.iron-selected {
     background-color: rgb(228, 228, 228);
 }
+.btn-red {
+  color: #f44336;
+}
+
+.btn-red [raised] {
+    color: #ffffff;
+    background-color: #f44336;
+}
+.btn-green-background {
+    background-color: #4caf50;
+    color: #ffffff
+}
