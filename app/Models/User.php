@@ -26,19 +26,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $info;
     }
 
-    public function makeTransaction($amount, $description, $txid = NULL, $status = 1) { status: 0 = error 1 = success 2 = pending
+    public function makeTransaction($amount, $description, $txid = NULL, $status = 1) { //status: 0 = error 1 = success 2 = pending
         $transaction = new Transaction;
 
         if($txid == NULL){ // generating txid
             $txid = "";
-            $seed = str_split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_#');
+            $seed = str_split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
             while(true){
                 shuffle($seed);
                 foreach (array_rand($seed, 9) as $k) $txid .= $seed[$k];
                 try{
-                    $t = Transactions::findorfail(array('txid',$txid));
-                }catch(ModelNotFoundException $e){
-                    break();
+                    $t = Transaction::findorfail(array('txid',$txid));
+                } catch(ModelNotFoundException $e){
+                    break;
                 }
             }
         }
@@ -63,17 +63,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     public function updateStatus($txid,$status = 1){
-        try{
-            $transaction = Transactions::findorfail($txid);
-        }catch(ModelNotFoundException $e){
-            return; //what I have to return?
+        try {
+            $transaction = Transactions::firstOrFail($txid); //just get the first result
+        } catch(ModelNotFoundException $e){
+            return false; //sent44: what I have to return? paphonbth: Just return false(meaning its not successful)
         }
         $transaction->status = $status;
         $transaction->save();
+		return true;
     }
 
 	public function getTransactions($status = -1) {
+		//any status
 		if($status == -1) return Transactions::where('user_id', '=', $this->id)->orderBy('created_at', 'desc')->get()->all();
+		//status = $status
         if($status >= 0 && $status <= 3) return Transactions::where('user_id', '=', $this->id)->where('status','=', $status)->orderBy('created_at', 'desc')->get()->all();
 	}
 

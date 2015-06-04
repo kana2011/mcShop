@@ -16,7 +16,7 @@
             <tbody>
                 <template is="dom-repeat" items="{{transactions}}" as="transaction">
                     <tr>
-                        <td data-title="TXID">{{transaction.id}}</td>
+                        <td data-title="TXID">{{transaction.txid}}</td>
                         <td data-title="Description">{{transaction.description}}</td>
                         <td data-title="Amount">{{transaction.amount}}</td>
                         <td data-title="Time">{{transaction.created_at}}</td>
