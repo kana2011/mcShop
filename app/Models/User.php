@@ -73,6 +73,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return true;
     }
 
+    public function updateDescription($txid,$description){
+        try {
+            $transaction = Transactions::firstOrFail($txid); //only first
+         } catch(ModelNotFoundException $e){
+            return false; //return false
+        }
+        $transaction->description = $description;
+        $transaction->save();
+        return true;
+    }
+
+    public function updateAmont($txid,$amount){
+        try {
+            $transaction = Transactions::firstOrFail($txid); //first yeah
+         } catch(ModelNotFoundException $e){
+            return false;
+        }
+        $transaction->amount = $amount;
+        $transaction->save();
+        return true;
+    }
+
 	public function getTransactions($status = -1) {
 		//any status
 		if($status == -1) return Transactions::where('user_id', '=', $this->id)->orderBy('created_at', 'desc')->get()->all();
