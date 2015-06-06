@@ -21,8 +21,8 @@
             <div id="itemDialogContent" class="flex">
             </div>
             <div id="itemDialogButtons" class="buttons">
-                <paper-button dialog-dismiss class="btn-red">Cancel</paper-button>
-                <paper-button class="btn-green-background" on-tap="buyItem" dialog-confirm autofocus>Buy</paper-button>
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button class="btn-green" on-tap="buyItem" dialog-confirm autofocus>Buy</paper-button>
             </div>
         </paper-dialog>
         <paper-dialog id="loadingDialog" modal entry-animation="scale-up-animation" exit-animation="fade-out-animation">
@@ -36,8 +36,8 @@
                     <paper-menu selected="{{selectedPage}}" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
                         <shop-drawer-item clickable><iron-icon icon="home"></iron-icon>Home</shop-drawer-item>
                         <shop-drawer-item clickable><iron-icon icon="shopping-cart"></iron-icon>Shop</shop-drawer-item>
-                        <shop-drawer-item clickable><iron-icon item-icon icon="credit-card"></iron-icon>Refill</shop-drawer-item>
-                        <shop-drawer-item clickable><iron-icon item-icon icon="credit-card"></iron-icon>Transactions</shop-drawer-item>
+                        <shop-drawer-item on-click="loadTopup" clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
+                        <shop-drawer-item on-click="loadTransactions" clickable><iron-icon item-icon icon="credit-card"></iron-icon>Transactions</shop-drawer-item>
                         <shop-drawer-item clickable><iron-icon icon="book"></iron-icon>Wiki</shop-drawer-item>
                         <shop-divider></shop-divider>
                         <shop-drawer-item onclick="{{logout}}"><iron-icon icon="fa:sign-out"></iron-icon>Logout</shop-drawer-item>
@@ -58,8 +58,8 @@
                         <neon-animatable nopadding>
                             <shop-listing data="{{shop}}"></shop-listing>
                         </neon-animatable>
-                        <neon-animatable>
-                            <h2 mcShop-title-h2>Refill</h2>
+                        <neon-animatable id="topup">
+                            <h2 mcShop-title-h2>Topup</h2>
                             <paper-input-container>
                                 <label>Truemoney</label>
                                 <input is="iron-input" maxlength="14">
