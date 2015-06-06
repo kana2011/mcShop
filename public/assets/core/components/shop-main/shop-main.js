@@ -5,7 +5,7 @@ Polymer({
         app = this;
         this.loading = true;
         this.logout = this.logoutFunc;
-        this.selectedPage = 1;
+        this.selectedPage = 2;
         this.loadApp();
     },
     listeners: {
@@ -54,6 +54,9 @@ Polymer({
         }).done(function(data) {
             app.transactions = data.result;
         });
+    },
+    loadTopup: function() {
+        $('#topup').html('<shop-topup-tmt></shop-topup-tmt>');
     },
     checkLoginFunc: function(event, detail, sender) {
         var login = detail.me;
