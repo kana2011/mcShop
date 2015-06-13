@@ -1,0 +1,4 @@
+.cart-container {
+    height: calc(100vh - 192px);
+    background-color: #FFFFFF;
+}

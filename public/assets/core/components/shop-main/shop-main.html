@@ -3,6 +3,7 @@
 <link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
 <link rel="import" href="../shop-login/shop-login.html">
 <link rel="import" href="../shop-listing/shop-listing.html">
+<link rel="import" href="../shop-cart/shop-cart.html">
 <link rel="import" href="../shop-transactions/shop-transactions.html">
 <dom-module name="shop-main" on-login-start="{{checkLogin}}" attributes="title">
     <template>
@@ -56,7 +57,10 @@
                             <h2 mcShop-title-h2>Promotion</h2>
                         </neon-animatable>
                         <neon-animatable nopadding>
-                            <shop-listing data="{{shop}}"></shop-listing>
+                            <neon-animated-pages selected="{{isShowCart}}">
+                                <shop-listing data="{{shop}}" on-show-cart="_onShowCart"></shop-listing>
+                                <shop-cart class="flex"></shop-cart>
+                            </neon-animated-pages>
                         </neon-animatable>
                         <neon-animatable id="topup">
                             <h2 mcShop-title-h2>Topup</h2>
