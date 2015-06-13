@@ -5,8 +5,7 @@ Polymer({
         app = this;
         this.loading = true;
         this.logout = this.logoutFunc;
-        this.selectedPage = 1;
-        this.isShowCart = 0;
+        this.selectedPage = 2;
         this.loadApp();
     },
     listeners: {
@@ -117,9 +116,6 @@ Polymer({
             app.loadApp();
             login.$.toast1.hide();
         });
-    },
-    _onShowCart: function() {
-        this.isShowCart = 1;
     }
 });
 
