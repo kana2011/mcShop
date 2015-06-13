@@ -11,7 +11,7 @@ class AuthController extends Controller {
     {
         $rules = array(
             'username'    => 'required|alphaNum|min:3',
-            'password' => 'required|alphaNum|min:3'
+            'password' => 'required|min:3'
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -22,7 +22,7 @@ class AuthController extends Controller {
             $json['error'] = "validation_error";
             return view("json")->with(array("json" => $json));
         } else {
-            
+
             $userdata = array(
                 'username'  => Input::get('username'),
                 'password'  => Input::get('password')
@@ -37,11 +37,11 @@ class AuthController extends Controller {
             }
         }
     }
-    
+
     public function check() {
         return $this->json(array("result" => Auth::check()));
     }
-    
+
     public function logout() {
         Auth::logout();
         return view("json")->with(array("json" => array("status" => true)));
