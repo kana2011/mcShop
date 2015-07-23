@@ -36,7 +36,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 shuffle($seed);
                 foreach (array_rand($seed, 9) as $k) $txid .= $seed[$k];
                 try{
-                    $t = Transaction::findorfail(array('txid',$txid));
+					$t = Transaction::where('txid', '=', $txid)->firstOrFail();
                 } catch(ModelNotFoundException $e){
                     break;
                 }

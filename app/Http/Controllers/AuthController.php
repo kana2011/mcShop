@@ -11,8 +11,15 @@ class AuthController extends Controller {
 
     public function TokenLogin()
     {
-        $t = Token::findorfail(array('id',Input::get('token')));
-        Auth::loginUsingId($t->userid);
+        try{
+            $t = Token::where('id', '=', Input::get('token'))->firstOrFail();
+            Auth::loginUsingId($t->userid);
+            return view("json")->with(array("json" => array("status" => true)));
+        } catch(ModelNotFoundException $e){
+            return view("json")->with(array("json" => array("status" => false,
+                                                            "error" => "invalid_token"
+                                                            )));
+        }
     }
 
     public function Login()
@@ -46,7 +53,7 @@ class AuthController extends Controller {
                         shuffle($seed);
                         foreach (array_rand($seed, 15) as $k) $tokenId .= $seed[$k];
                         try{
-                            $t = Token::findorfail(array('id',$token));
+                            $t = Token::where('id', '=',$token)->firstOrFail();
                         } catch(ModelNotFoundException $e){
                             break;
                         }

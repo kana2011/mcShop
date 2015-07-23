@@ -13,6 +13,7 @@ class ShopController extends Controller {
     private $user;
 
     public function __construct() {
+        $this->validateToken();
         if(Auth::check()) {
             $this->user = Auth::user();
         } else {
