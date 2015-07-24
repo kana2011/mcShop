@@ -60,7 +60,8 @@ paper-drawer-panel:not([narrow]) [mcShop-title] {
   box-shadow: none !important;
 }
 [drawer]>paper-menu shop-drawer-item>iron-icon {
-  margin: 0 16px 0 0
+  opacity: 0.54;
+  margin: 0 32px 0 0
 }
 [drawer]>core-menu {
   margin: 0
