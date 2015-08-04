@@ -146,6 +146,11 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		/*
+		 * Plugin system
+		 */
+		'App\Plugins\PluginManager'
+
 	],
 
 	/*
