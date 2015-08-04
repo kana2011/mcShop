@@ -1,8 +1,7 @@
-<?php
-
-namespace App\Plugins;
+<?php namespace App\Plugins;
 
 use File;
+use Route;
 use stdClass;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,7 +30,11 @@ class PluginManager extends ServiceProvider {
     public function loadPlugins($plugins) {
         foreach($plugins as $plugin) {
             require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/load.php');
-            self::$plugins[] = new $plugin(count(self::$plugins));
+            $container = new stdClass;
+            $container->name = $plugin;
+            $container->class = new $plugin(count(self::$plugins));
+            self::$plugins[] = $container;
+            $container->class->OnLoad();
         }
     }
 
@@ -44,11 +47,16 @@ class PluginManager extends ServiceProvider {
 
     }
 
-    public static function registerHook($plugin, $hook, $priority) {
+    public static function registerController($id, $name, $class_name) {
+        $plugin = self::$plugins[$id];
+        Route::controller($plugin->name . '_' . $name, 'App\\Plugins\\Plugins\\' . $plugin->name . '\\Controllers\\' . $class_name);
+    }
+
+    public static function registerHook($id, $hook, $priority) {
         if(!isset(self::$hooks[$hook])) {
             self::$hooks[$hook] = [[], [], [], [], [], [], []];
         }
-        array_push(self::$hooks[$hook][$priority], $plugin);
+        array_push(self::$hooks[$hook][$priority], $id);
     }
 
     public static function callHook($hook, $args) {
@@ -56,7 +64,7 @@ class PluginManager extends ServiceProvider {
             $hooksList = self::$hooks[$hook];
             foreach($hooksList as $priority) {
                 foreach($priority as $plugin) {
-                    call_user_func(array(self::$plugins[$plugin], 'On' . $hook), $args);
+                    call_user_func(array(self::$plugins[$plugin]->class, 'on' . $hook), $args);
                 }
             }
         }
