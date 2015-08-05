@@ -49,7 +49,7 @@ class PluginManager extends ServiceProvider {
 
     public static function registerController($id, $name, $class_name) {
         $plugin = self::$plugins[$id];
-        Route::controller($plugin->name . '_' . $name, 'App\\Plugins\\Plugins\\' . $plugin->name . '\\Controllers\\' . $class_name);
+        Route::controller($plugin->name . '/' . $name, 'App\\Plugins\\Plugins\\' . $plugin->name . '\\Controllers\\' . $class_name);
     }
 
     public static function registerHook($id, $hook, $priority) {
