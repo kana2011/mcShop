@@ -23,7 +23,9 @@ class PluginManager extends ServiceProvider {
         }
         catch (Illuminate\Filesystem\FileNotFoundException $exception)
         {
-            File::put(File::get(app_path() . '/Plugins/plugins.json', '[]'));
+            $plugins = array_map('basename', File::directories(app_path() . '/Plugins/Plugins/'));
+            File::put(app_path() . '/Plugins/plugins.json', json_encode($plugins));
+            $this->loadPluginsList();
         }
     }
 
