@@ -17,12 +17,9 @@ class PluginManager extends ServiceProvider {
     }
 
     public function loadPluginsList() {
-        try
-        {
+        if (File::exists(app_path() . '/Plugins/plugins.json')) {
             $this->loadPlugins(json_decode(File::get(app_path() . '/Plugins/plugins.json')));
-        }
-        catch (Illuminate\Filesystem\FileNotFoundException $exception)
-        {
+        } else {
             $plugins = array_map('basename', File::directories(app_path() . '/Plugins/Plugins/'));
             File::put(app_path() . '/Plugins/plugins.json', json_encode($plugins));
             $this->loadPluginsList();
@@ -66,7 +63,7 @@ class PluginManager extends ServiceProvider {
             $hooksList = self::$hooks[$hook];
             foreach($hooksList as $priority) {
                 foreach($priority as $plugin) {
-                    call_user_func(array(self::$plugins[$plugin]->class, 'on' . $hook), $args);
+                    call_user_func_array(array(self::$plugins[$plugin]->class, 'on' . $hook), $args);
                 }
             }
         }
