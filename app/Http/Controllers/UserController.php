@@ -5,6 +5,8 @@ use Auth;
 use App\Models\User;
 use App\Exceptions\NotLoggedInException;
 use App\Http\Controllers\Controller;
+use App\Plugins\PluginManager;
+use stdClass;
 
 class UserController extends Controller {
 
@@ -33,6 +35,9 @@ class UserController extends Controller {
         }
         $fResult = $this->user->getPublicInfo();
         $fResult['shop'] = $result;
+        $topupmethod = [new stdClass];
+        PluginManager::callHook("getTopupMethod", $topupmethod);
+        $fResult['topupmethod'] = $topupmethod[0]->method;
         return $this->json($fResult);
     }
 
