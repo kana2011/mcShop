@@ -16,6 +16,9 @@ Polymer({
     },
     submitTopup: function() {
         submit_tmnc();
+    },
+    submitPayment: function() {
+        submit_payment();
     }
 });
 
