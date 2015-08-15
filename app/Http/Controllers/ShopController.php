@@ -7,6 +7,7 @@ use App\Exceptions\NotLoggedInException;
 use App\Models\ShopItem;
 use App\Minecraft\MinecraftConnection as Minecraft;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ShopController extends Controller {
 
@@ -35,7 +36,12 @@ class ShopController extends Controller {
 
     public function buy() {
         //find the item
-        $item = ShopItem::where('id', '=', Input::get('itemid'))->firstOrFail();
+        try{
+            $item = ShopItem::where('id', '=', Input::get('itemid'))->firstOrFail();
+        }catch(ModelNotFoundException $e){
+            $this->user->makeTransaction(0, "Try to buy item that doesn't exist ,or begin remove" ,NULL,2);
+            return $this->failed("item_doesn't_exist");
+        }
         //if enough money
         if($this->user->getMoney() >= $item->price) {
             //make transaction
@@ -50,10 +56,11 @@ class ShopController extends Controller {
             } else {
                 //connection failed
                 $this->user->updateStatus($txid,0);
-                $this->user->updateDescription($txid,"Order failed: Server offline while buying " . $item->dispname);
+                $this->user->updateDescription($txid,"Server offline while buying " . $item->dispname);
                 return $this->failed("server_offline");
             }
         } else {
+            $this->user->makeTransaction(-$item->price, "Not enough money to buy " . $item->dispname,NULL,0);
             return $this->failed("not_enough_money");
         }
     }
