@@ -7,7 +7,7 @@ Polymer({
         tmtopup = this;
         this.showtopup = true;
 
-        this.username = app.user.username;
+        this.userid = app.user.id;
 
         iframe = document.createElement("IFRAME");
         iframe.style.display = "hidden";
