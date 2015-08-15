@@ -51,6 +51,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $transaction->status = $status;
         // process yeah
         $transaction->save();
+        return $txid;
     }
 
     public function getMoney() {
@@ -64,7 +65,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function updateStatus($txid,$status = 1){
         try {
-            $transaction = Transactions::firstOrFail($txid); //just get the first result
+            $transaction = Transactions::where('txid','=',$txid)->firstOrFail(); //just get the first result
         } catch(ModelNotFoundException $e){
             return false; //sent44: what I have to return? paphonbth: Just return false(meaning its not successful)
         }
@@ -75,7 +76,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function updateDescription($txid,$description){
         try {
-            $transaction = Transactions::firstOrFail($txid); //only first
+            $transaction = Transactions::where('txid','=',$txid)->firstOrFail(); //only first
          } catch(ModelNotFoundException $e){
             return false; //return false
         }
@@ -86,7 +87,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function updateAmont($txid,$amount){
         try {
-            $transaction = Transactions::firstOrFail($txid); //first yeah
+            $transaction = Transactions::where('txid','=',$txid)->firstOrFail(); //first yeah
          } catch(ModelNotFoundException $e){
             return false;
         }

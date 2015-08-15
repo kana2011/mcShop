@@ -39,20 +39,22 @@ class ShopController extends Controller {
         //if enough money
         if($this->user->getMoney() >= $item->price) {
             //make transaction
-            $this->user->makeTransaction(-$item->price, "Bought " . $item->dispname);
+            $txid = $this->user->makeTransaction(-$item->price, "Buying " . $item->dispname,NULL,2);
             $minecraft = Minecraft::getAdapter();
             //connect to mc server
             if($minecraft->connect()) {
                 $minecraft->sendCommand(str_replace("%player%", $this->user->username, $item->cmd));
+                $this->user->updateStatus($txid);
+                $this->user->updateDescription($txid,"Bought " . $item->dispname);
                 return $this->success($this->user->getMoney());
             } else {
                 //connection failed
-                $this->user->makeTransaction($item->price, "Order failed: Server offline.");
+                $this->user->updateStatus($txid,0);
+                $this->user->updateDescription($txid,"Order failed: Server offline while buying " . $item->dispname);
                 return $this->failed("server_offline");
             }
         } else {
             return $this->failed("not_enough_money");
         }
     }
-
 }
