@@ -43,6 +43,7 @@ Polymer({
             app.user.username = data.username;
             app.user.money = data.money;
             app.shop = data.shop;
+            app.topupmethod = data.topupmethod;
             app.loading = false;
             app.showMain = true;
         });
@@ -58,8 +59,7 @@ Polymer({
     },
     loadTopup: function() {
         if(!this.topupLoaded) {
-            console.log(this.username);
-            $('#topup').html('<topup-tmtopup></topup-tmtopup>');
+            $('#topup').html('<topup-' + this.topupmethod.toLowerCase() + '></topup-' + this.topupmethod.toLowerCase() + '>');
             this.topupLoaded = true;
         }
     },
