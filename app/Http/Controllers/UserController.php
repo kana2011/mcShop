@@ -36,6 +36,7 @@ class UserController extends Controller {
         $fResult = $this->user->getPublicInfo();
         $fResult['shop'] = $result;
         $topupmethod = [new stdClass];
+        $topupmethod[0]->method = "none";
         PluginManager::callHook("getTopupMethod", $topupmethod);
         $fResult['topupmethod'] = $topupmethod[0]->method;
         return $this->json($fResult);
