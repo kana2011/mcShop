@@ -4,9 +4,6 @@ use File;
 use Route;
 use stdClass;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Plugin as Plugin;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PluginManager extends ServiceProvider {
 
@@ -16,13 +13,22 @@ class PluginManager extends ServiceProvider {
     public function __construct() {
         self::$plugins = [];
         self::$hooks = [];
-        $this->loadPlugins();
+        $this->loadPluginsList();
     }
 
-    public function loadPlugins() {
-        $plugins = Plugin->enablePluginsList();
-        foreach ($plugins as $key=>$plugin){
-            require_once(app_path() . '/Plugins/Plugins/' . $plugin->name . '/' . $plugin->name . '.php');
+    public function loadPluginsList() {
+        if (File::exists(app_path() . '/Plugins/plugins.json')) {
+            $this->loadPlugins(json_decode(File::get(app_path() . '/Plugins/plugins.json')));
+        } else {
+            $plugins = array_map('basename', File::directories(app_path() . '/Plugins/Plugins/'));
+            File::put(app_path() . '/Plugins/plugins.json', json_encode($plugins));
+            $this->loadPluginsList();
+        }
+    }
+
+    public function loadPlugins($plugins) {
+        foreach($plugins as $plugin) {
+            require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/' . $plugin . '.php');
             $container = new stdClass;
             $container->name = $plugin;
             $container->class = new $plugin(count(self::$plugins));
@@ -45,14 +51,14 @@ class PluginManager extends ServiceProvider {
         Route::controller($plugin->name . '/' . $name, 'App\\Plugins\\Plugins\\' . $plugin->name . '\\Controllers\\' . $class_name);
     }
 
-    public static function registerHook($id, $hook, $priority) { //what this?
+    public static function registerHook($id, $hook, $priority) {
         if(!isset(self::$hooks[$hook])) {
             self::$hooks[$hook] = [[], [], [], [], [], [], []];
         }
         array_push(self::$hooks[$hook][$priority], $id);
     }
 
-    public static function callHook($hook, $args) { // this too?
+    public static function callHook($hook, $args) {
         if(isset(self::$hooks[$hook])) {
             $hooksList = self::$hooks[$hook];
             foreach($hooksList as $priority) {

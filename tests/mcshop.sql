@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2015 at 05:50 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Jul 31, 2015 at 03:25 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.5.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `authme` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `ip` varchar(40) NOT NULL DEFAULT '127.0.0.1',
@@ -54,32 +54,11 @@ INSERT INTO `authme` (`id`, `username`, `password`, `ip`, `lastlogin`, `x`, `y`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plugin`
---
-
-CREATE TABLE IF NOT EXISTS `plugin` (
-`id` int(4) NOT NULL,
-  `name` varchar(36) NOT NULL,
-  `version` varchar(8) NOT NULL,
-  `author` varchar(20) NOT NULL,
-  `enable` enum('0','1') NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `plugin`
---
-
-INSERT INTO `plugin` (`id`, `name`, `version`, `author`, `enable`) VALUES
-(1, 'TMTopup', '1.0.0', 'mcShop Dev', '1');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `shopgroup`
 --
 
 CREATE TABLE IF NOT EXISTS `shopgroup` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `dispname` varchar(64) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -98,7 +77,7 @@ INSERT INTO `shopgroup` (`id`, `dispname`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `shopitem` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `dispname` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `igroup` int(8) NOT NULL,
   `icomment` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -154,7 +133,7 @@ INSERT INTO `tokens` (`id`, `userid`, `appname`, `created_at`, `updated_at`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `transactions` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `txid` varchar(15) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
@@ -188,37 +167,31 @@ INSERT INTO `transactions` (`id`, `txid`, `user_id`, `amount`, `description`, `s
 -- Indexes for table `authme`
 --
 ALTER TABLE `authme`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `plugin`
---
-ALTER TABLE `plugin`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `shopgroup`
 --
 ALTER TABLE `shopgroup`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `shopitem`
 --
 ALTER TABLE `shopitem`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tokens`
 --
 ALTER TABLE `tokens`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
- ADD PRIMARY KEY (`txid`), ADD KEY `id_2` (`id`), ADD KEY `id_3` (`id`), ADD FULLTEXT KEY `description` (`description`);
+  ADD PRIMARY KEY (`txid`), ADD KEY `id_2` (`id`), ADD KEY `id_3` (`id`), ADD FULLTEXT KEY `description` (`description`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -228,27 +201,22 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `authme`
 --
 ALTER TABLE `authme`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `plugin`
---
-ALTER TABLE `plugin`
-MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `shopgroup`
 --
 ALTER TABLE `shopgroup`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `shopitem`
 --
 ALTER TABLE `shopitem`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
