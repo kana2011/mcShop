@@ -1,5 +1,4 @@
 /dist/bower_components/*
-/vendor
 /node_modules
 .env
 /nbproject/private/
@@ -8,4 +7,3 @@ sublime/
 .idea/
 public/test/
 config/tmtopup.php
-composer.lock
