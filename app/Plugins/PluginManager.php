@@ -35,7 +35,7 @@ class PluginManager extends ServiceProvider {
             $container = new stdClass;
             $container->name = $plugin;
             $container->class = new $plugin($pl->id);
-            self::$plugins[] = $container;
+            self::$plugins[$pl->id] = $container;
             $container->class->onLoad();
         }
     }
