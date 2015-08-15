@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2015 at 03:25 AM
+-- Generation Time: Aug 15, 2015 at 07:00 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -50,6 +50,21 @@ CREATE TABLE IF NOT EXISTS `authme` (
 INSERT INTO `authme` (`id`, `username`, `password`, `ip`, `lastlogin`, `x`, `y`, `z`, `world`, `email`, `isLogged`, `remember_token`, `money`, `updated_at`) VALUES
 (1, 'test', '$SHA$0475ce39fb153c35$0ea60ed41bf1985d6137d35278d6c9f9ea9345f948a1e416e0ad6a1da666be68', '198.18.0.1', 0, 0, 0, 0, 'world', 'your@email.com', 0, 'rfivcb6UXaAH9hEn2t6sf7Q7a4f7CawOO2j7bLG50zPX0WjLMvmxxb7oUSfa', 2000, '2015-06-03 22:44:21'),
 (2, 'test2', '$SHA$0475ce39fb153c35$0ea60ed41bf1985d6137d35278d6c9f9ea9345f948a1e416e0ad6a1da666be68', '198.18.0.1', 0, 0, 0, 0, 'world', 'your@email.com', 0, '', 0, '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plugins`
+--
+
+CREATE TABLE IF NOT EXISTS `plugins` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `authors` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` int(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -112,20 +127,6 @@ CREATE TABLE IF NOT EXISTS `tokens` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tokens`
---
-
-INSERT INTO `tokens` (`id`, `userid`, `appname`, `created_at`, `updated_at`) VALUES
-('ajLlHKdx92ynprv', 2, 'Android', '2015-07-25 13:26:27', '2015-07-25 13:26:27'),
-('c1TVwzxlWvAqmLh', 2, 'Android', '2015-07-25 10:50:36', '2015-07-25 10:50:36'),
-('LrCsIgHwXRqb06z', 1, 'Android', '2015-07-30 13:09:48', '2015-07-30 13:09:48'),
-('TVd2oMxBrmYtP7z', 1, 'Android', '2015-07-25 09:43:03', '2015-07-25 09:43:03'),
-('VcWI63uXKlLqFgQ', 1, 'Android', '2015-07-25 09:03:17', '2015-07-25 09:03:17'),
-('VGCbOLcyE7BPN8d', 1, 'Android', '2015-07-25 13:26:03', '2015-07-25 13:26:03'),
-('xoLjClu8XvMnWiS', 1, 'Android', '2015-07-28 13:45:58', '2015-07-28 13:45:58'),
-('XWyECwmF41ZGH0k', 1, 'Android', '2015-07-27 13:14:21', '2015-07-27 13:14:21');
-
 -- --------------------------------------------------------
 
 --
@@ -141,23 +142,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `status` enum('0','1','2') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transactions`
---
-
-INSERT INTO `transactions` (`id`, `txid`, `user_id`, `amount`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, '#LOLTROLL', 1, -500, 'Bought an item', '1', '2015-06-01 00:00:01', '2015-06-01 00:00:01'),
-(9, '4AYcUiZv2', 1, -100, 'Bought TestItem2', '1', '2015-07-22 08:32:20', '2015-07-22 08:32:20'),
-(2, 'buy--item', 1, -50, 'Bought TestItem', '1', '2015-06-01 00:00:05', '2015-06-01 00:00:05'),
-(10, 'dAWCKy8u7', 1, 100, 'Order failed: Server offline.', '1', '2015-07-22 08:32:21', '2015-07-22 08:32:21'),
-(3, 'gengengen', 1, -50, 'Bought TestItem', '1', '2015-06-01 00:00:02', '2015-06-01 00:00:02'),
-(7, 'GzrBWwXJC', 1, -50, 'Bought TestItem', '1', '2015-06-04 13:52:46', '2015-06-04 13:52:46'),
-(8, 'mXb9O5G#4', 1, 50, 'Order failed: Server offline.', '1', '2015-06-04 13:52:47', '2015-06-04 13:52:47'),
-(4, 'noMoreLoL', 1, -500, 'Bought an item', '0', '2015-06-01 00:00:03', '2015-06-01 00:00:03'),
-(5, 'Pending123', 1, 100, 'Topup with TrueMoney', '2', '2015-06-01 00:00:04', '2015-06-01 00:00:04'),
-(6, 'Whatistxid', 1, 750, 'Topup with TrueMoney', '1', '2015-06-01 00:00:00', '2015-06-01 00:00:00');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -168,6 +153,12 @@ INSERT INTO `transactions` (`id`, `txid`, `user_id`, `amount`, `description`, `s
 --
 ALTER TABLE `authme`
   ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `plugins`
+--
+ALTER TABLE `plugins`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `shopgroup`
@@ -203,6 +194,11 @@ ALTER TABLE `transactions`
 ALTER TABLE `authme`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `plugins`
+--
+ALTER TABLE `plugins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `shopgroup`
 --
 ALTER TABLE `shopgroup`
@@ -216,7 +212,7 @@ ALTER TABLE `shopitem`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

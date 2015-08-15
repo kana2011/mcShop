@@ -2,8 +2,11 @@
 
 use File;
 use Route;
+use Config;
 use stdClass;
+use App\Models\Plugin;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class PluginManager extends ServiceProvider {
 
@@ -13,27 +16,37 @@ class PluginManager extends ServiceProvider {
     public function __construct() {
         self::$plugins = [];
         self::$hooks = [];
-        $this->loadPluginsList();
+        $this->bootEloquent();
+        //$this->scanPlugins();
+        $this->loadEnabledPlugins();
     }
 
-    public function loadPluginsList() {
-        if (File::exists(app_path() . '/Plugins/plugins.json')) {
-            $this->loadPlugins(json_decode(File::get(app_path() . '/Plugins/plugins.json')));
-        } else {
-            $plugins = array_map('basename', File::directories(app_path() . '/Plugins/Plugins/'));
-            File::put(app_path() . '/Plugins/plugins.json', json_encode($plugins));
-            $this->loadPluginsList();
-        }
+    public function bootEloquent() {
+        $capsule = new Capsule;
+        $capsule->addConnection(Config::get('database.connections.mysql'));
+        $capsule->bootEloquent();
     }
 
-    public function loadPlugins($plugins) {
-        foreach($plugins as $plugin) {
+    public function loadEnabledPlugins() {
+        $plugins = Plugin::where('enabled', '=', '1')->get();
+        foreach($plugins as $pl) {
+            $plugin = $pl->name;
             require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/' . $plugin . '.php');
             $container = new stdClass;
             $container->name = $plugin;
-            $container->class = new $plugin(count(self::$plugins));
+            $container->class = new $plugin($pl->id);
             self::$plugins[] = $container;
-            $container->class->OnLoad();
+            $container->class->onLoad();
+        }
+    }
+
+    public function scanPlugins() {
+        Plugin::truncate();
+        $plugins = array_map('basename', File::directories(app_path() . '/Plugins/Plugins/'));
+        foreach($plugins as $plugin) {
+            $pl = new Plugin;
+            $pl->name = $plugin;
+            $pl->save();
         }
     }
 
