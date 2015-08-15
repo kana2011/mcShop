@@ -5,7 +5,7 @@ Polymer({
         app = this;
         this.loading = true;
         this.logout = this.logoutFunc;
-        this.selectedPage = 0;
+        this.selectedPage = 1;
         this.topupLoaded = false;
         this.loadApp();
     },
