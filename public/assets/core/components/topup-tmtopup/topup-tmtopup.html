@@ -1,0 +1,50 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-elements/shop-elements.html">
+<link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
+<dom-module name="topup-tmtopup">
+    <template>
+        <template if="{{loading}}" is="dom-if" id="loadingScreen">
+            <div class="center parent">
+                <div class="center child">
+                    <paper-spinner active></paper-spinner><br><br>
+                    <span>{{title}}</span>
+                </div>
+            </div>
+        </template>
+        <paper-dialog style="min-width: 400px;" id="loadingDialog" modal with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <paper-progress style="width: 352px; margin-bottom: 24px;" indeterminate></paper-progress>
+        </paper-dialog>
+        <paper-dialog style="min-width: 400px;" id="confirmDialog" with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <h2 id="confirmDialogTitle"></h2>
+            <div id="confirmDialogContent" class="flex">
+            </div>
+            <div id="confirmDialogButtons" class="buttons">
+                <paper-button dialog-confirm autofocus>OK</paper-button>
+            </div>
+        </paper-dialog>
+        <paper-dialog id="yesnoDialog" with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <h2 id="yesnoDialogTitle"></h2>
+            <div id="yesnoDialogContent" class="flex">
+            </div>
+            <div id="yesnoDialogButtons" class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button class="btn-green" on-click="submitPayment" autofocus>Confirm transaction</paper-button>
+            </div>
+        </paper-dialog>
+        <template if="{{showtopup}}" is="dom-if">
+            <h2 mcShop-title-h2>Topup</h2>
+            <paper-input-container>
+                <label>Truemoney</label>
+                <input id="tmn_password" name="tmn_password" is="iron-input" maxlength="14">
+                <paper-input-char-counter></paper-input-char-counter>
+            </paper-input-container>
+            <input id="ref1" name="ref1" type="hidden" value="{{userid}}">
+            <input id="ref2" name="ref2" type="hidden" value="{{userid}}">
+            <input id="ref3" name="ref3" type="hidden" value="{{userid}}">
+            <paper-button on-click="submitTopup">Topup</paper-button>
+        </template>
+    </template>
+    <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="topup-tmtopup.js"></script>
+    <script src="payment-tmt.js"></script>
+</dom-module>

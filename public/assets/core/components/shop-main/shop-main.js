@@ -6,6 +6,7 @@ Polymer({
         this.loading = true;
         this.logout = this.logoutFunc;
         this.selectedPage = 2;
+        this.topupLoaded = false;
         this.loadApp();
     },
     listeners: {
@@ -56,7 +57,11 @@ Polymer({
         });
     },
     loadTopup: function() {
-        $('#topup').html('<shop-topup-tmt></shop-topup-tmt>');
+        if(!this.topupLoaded) {
+            console.log(this.username);
+            $('#topup').html('<topup-tmtopup></topup-tmtopup>');
+            this.topupLoaded = true;
+        }
     },
     checkLoginFunc: function(event, detail, sender) {
         var login = detail.me;
