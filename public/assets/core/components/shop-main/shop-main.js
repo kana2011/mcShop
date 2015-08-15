@@ -55,6 +55,7 @@ Polymer({
             url: "api/user:transactions"
         }).done(function(data) {
             app.transactions = data.result;
+            transactions.color();
         });
     },
     loadTopup: function() {

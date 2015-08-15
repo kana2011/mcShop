@@ -4,7 +4,7 @@
 <dom-module name="shop-transactions" attributes="{{transactions}}">
     <template>
         <link rel="stylesheet" href="shop-transactions.css">
-        <table id="table" class="table table-hover">
+        <table class="table table-hover">
             <thead>
                 <tr>
                      <th>TXID</th>
@@ -13,9 +13,9 @@
                      <th>Time</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="table">
                 <template is="dom-repeat" items="{{transactions}}" as="transaction">
-                    <tr>
+                    <tr class="{{transaction.status}}">
                         <td data-title="TXID">{{transaction.txid}}</td>
                         <td data-title="Description">{{transaction.description}}</td>
                         <td data-title="Amount">{{transaction.amount}}</td>
