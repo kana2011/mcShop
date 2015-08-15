@@ -9,3 +9,4 @@ sublime/
 .idea/
 public/test/
 config/tmtopup.php
+composer.lock
