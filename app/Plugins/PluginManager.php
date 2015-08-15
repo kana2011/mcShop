@@ -28,7 +28,7 @@ class PluginManager extends ServiceProvider {
 
     public function loadPlugins($plugins) {
         foreach($plugins as $plugin) {
-            require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/load.php');
+            require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/' . $plugin . '.php');
             $container = new stdClass;
             $container->name = $plugin;
             $container->class = new $plugin(count(self::$plugins));
