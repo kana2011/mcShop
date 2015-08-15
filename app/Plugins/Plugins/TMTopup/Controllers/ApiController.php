@@ -35,6 +35,8 @@ class ApiController extends Controller {
 				$user->makeTransaction($amounts['TMT' . $request['cardcard_amount']], "Topup with TrueMoney: " . $request['cardcard_password'], "TMT-" . $request['TXID']);
 				echo "SUCCEED";
 			}
+		} else {
+			echo "ACCESS_DENIED";
 		}
 
 	}
