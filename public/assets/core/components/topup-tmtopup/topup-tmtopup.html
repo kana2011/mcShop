@@ -3,14 +3,6 @@
 <link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
 <dom-module name="topup-tmtopup">
     <template>
-        <template if="{{loading}}" is="dom-if" id="loadingScreen">
-            <div class="center parent">
-                <div class="center child">
-                    <paper-spinner active></paper-spinner><br><br>
-                    <span>{{title}}</span>
-                </div>
-            </div>
-        </template>
         <paper-dialog style="min-width: 400px;" id="loadingDialog" modal with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
             <paper-progress style="width: 352px; margin-bottom: 24px;" indeterminate></paper-progress>
         </paper-dialog>
