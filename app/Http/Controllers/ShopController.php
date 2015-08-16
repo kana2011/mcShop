@@ -39,7 +39,6 @@ class ShopController extends Controller {
         try{
             $item = ShopItem::where('id', '=', Input::get('itemid'))->firstOrFail();
         }catch(ModelNotFoundException $e){
-            $this->user->makeTransaction(0, "Try to buy item that doesn't exist ,or begin remove" ,NULL,2);
             return $this->failed("item_doesn't_exist");
         }
         //if enough money
@@ -60,7 +59,6 @@ class ShopController extends Controller {
                 return $this->failed("server_offline");
             }
         } else {
-            $this->user->makeTransaction(-$item->price, "Not enough money to buy " . $item->dispname,NULL,0);
             return $this->failed("not_enough_money");
         }
     }

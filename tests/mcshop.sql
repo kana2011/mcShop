@@ -61,10 +61,14 @@ CREATE TABLE IF NOT EXISTS `plugins` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `authors` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `enabled` int(1) NOT NULL,
+  `enabled` enum('0','1') NOT NULL,
+  `priority_level` int(2) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `plugins` (`id`, `name`, `authors`, `enabled`, `priority_level`, `created_at`, `updated_at`) VALUES
+(1, 'TMTopup', 'mcShop dev', 1, 15, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

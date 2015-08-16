@@ -28,7 +28,7 @@ class PluginManager extends ServiceProvider {
     }
 
     public function loadEnabledPlugins() {
-        $plugins = Plugin::where('enabled', '=', '1')->get();
+        $plugins = Plugin::where('enabled', '=', '1')->orderBy('created_at', 'priority_level')->get();
         foreach($plugins as $pl) {
             $plugin = $pl->name;
             require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/' . $plugin . '.php');
