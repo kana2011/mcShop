@@ -25,7 +25,7 @@ class AuthController extends Controller {
     public function Login()
     {
         $rules = array(
-            'username'    => 'required|alphaNum|min:3',
+            'username'    => 'required|min:3',
             'password' => 'required|min:3'
         );
 
