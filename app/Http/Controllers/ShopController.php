@@ -62,4 +62,21 @@ class ShopController extends Controller {
             return $this->failed("not_enough_money");
         }
     }
+
+    public function addcart($itemid,$count=1) {
+        if(Session::has('cart')){ // cart session exist
+            $cart = Session::get('cart');
+            foreach(Session::get('cart') as $key=>$data){
+                if($key == $itemid){ //cart session exist and item exist
+                    $cart[$key] += $count;
+                    Session::put('cart',$cart);
+                    return true;
+                }
+            }
+            Session::push("cart." . $itemid,$count);
+            return true;
+        }
+        Session::push("cart",$count);
+
+    }
 }
