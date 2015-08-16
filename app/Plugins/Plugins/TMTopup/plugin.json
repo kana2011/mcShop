@@ -1,0 +1,14 @@
+{
+
+    "info":{
+        "name":"TMTopup",
+        "version":"0.10",
+        "desciption":"The way to get turemoney payment from Tmpay",
+        "author":"mcShop dev"
+    },
+    "update":{
+        "uri":"localhost/TMTopup.json",
+        "protocal":"http"
+    }
+
+}

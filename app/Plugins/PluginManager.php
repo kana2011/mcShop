@@ -6,6 +6,7 @@ use Config;
 use stdClass;
 use App\Models\Plugin;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class PluginManager extends ServiceProvider {
@@ -40,7 +41,53 @@ class PluginManager extends ServiceProvider {
         }
     }
 
-    public function scanPlugins() {
+    public function getRawInfo($plugin){
+        if(File::exists(app_path() . '/Plugins/Plugins/' . $plugin . '/plugin.json')){
+            return json_decode(File::get(app_path() . '/Plugins/Plugins/' . $plugin . '/plugin.json'));
+        }
+        return false;
+    }
+
+    public function getPluginInfo($plugin){
+        try{
+            $pl = Plugin::where('name','=',$plugin)->firstorfail();
+        }catch(ModelNotFoundException $e){
+            return false;
+        }
+        return $pl;
+    }
+
+    public function installPlugin($plugin){
+        if($this->getPluginInfo($plugin)!==false){
+            return false;
+        }
+        $info = $this->getRawInfo($plugin);
+        if(File::exists(app_path() . '/Plugins/Plugins/' . $plugin . '/install.php'){
+            require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/install.php');
+        }
+        $pl = new Plugin;
+        $pl->name = $info["info"]["name"];
+        $pl->enabled = 1;
+        $pl->save();
+    }
+
+    public function uninstallPlugin($plugin){
+        if($this->getPluginInfo($plugin)!==false){
+            $info = $this->getRawInfo($plugin);
+            if(File::exists(app_path() . '/Plugins/Plugins/' . $plugin . '/uninstall.php'){
+                require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/uninstall.php');
+            }
+            try{
+                $pl = Plugin::where("name","=",$plugin)->firstorfail();
+            }catch(ModelNotFoundException $e){
+                return false;
+            }
+            $pl->delete();
+        }
+        return false;
+    }
+
+    /*public function scanPlugins() {
         Plugin::truncate();
         $plugins = array_map('basename', File::directories(app_path() . '/Plugins/Plugins/'));
         foreach($plugins as $plugin) {
@@ -48,7 +95,7 @@ class PluginManager extends ServiceProvider {
             $pl->name = $plugin;
             $pl->save();
         }
-    }
+    }*/
 
     public function isDeferred() {
         return false;
