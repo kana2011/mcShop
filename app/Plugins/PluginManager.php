@@ -62,7 +62,7 @@ class PluginManager extends ServiceProvider {
             return false;
         }
         $info = $this->getRawInfo($plugin);
-        if(File::exists(app_path() . '/Plugins/Plugins/' . $plugin . '/install.php'){
+        if(File::exists(app_path() . '/Plugins/Plugins/' . $plugin . '/install.php')) {
             require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/install.php');
         }
         $pl = new Plugin;
@@ -74,7 +74,7 @@ class PluginManager extends ServiceProvider {
     public function uninstallPlugin($plugin){
         if($this->getPluginInfo($plugin)!==false){
             $info = $this->getRawInfo($plugin);
-            if(File::exists(app_path() . '/Plugins/Plugins/' . $plugin . '/uninstall.php'){
+            if(File::exists(app_path() . '/Plugins/Plugins/' . $plugin . '/uninstall.php')) {
                 require_once(app_path() . '/Plugins/Plugins/' . $plugin . '/uninstall.php');
             }
             try{
