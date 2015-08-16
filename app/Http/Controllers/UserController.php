@@ -39,6 +39,10 @@ class UserController extends Controller {
         $topupmethod[0]->method = "none";
         PluginManager::callHook("getTopupMethod", $topupmethod);
         $fResult['topupmethod'] = $topupmethod[0]->method;
+        $pluginmenu = [new stdClass];
+        $pluginmenu[0]->items = [];
+        PluginManager::callHook("getPluginMenu", $pluginmenu);
+        $fResult['pluginmenu'] = $pluginmenu[0]->items;
         return $this->json($fResult);
     }
 

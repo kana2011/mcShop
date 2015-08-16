@@ -46,7 +46,25 @@ Polymer({
             app.topupmethod = data.topupmethod;
             app.loading = false;
             app.showMain = true;
+            app.addDrawerMenuItems(data);
         });
+    },
+    addDrawerMenuItems: function(data) {
+        if(document.getElementById('pluginmenu') != null) {
+            $('#pluginmenu').html("");
+            if(data.pluginmenu.length > 0) {
+                var temp = "";
+                for(var i = 0; i < data.pluginmenu.length; i++) {
+                    temp += '<shop-drawer-item clickable><iron-icon icon="' + data.pluginmenu[i].icon + '"></iron-icon>' + data.pluginmenu[i].title + '</shop-drawer-item>';
+                }
+                temp += '<shop-divider></shop-divider>';
+                $('#pluginmenu').html(temp);
+            }
+        } else {
+            setTimeout(function() {
+                app.addDrawerMenuItems(data);
+            }, 100);
+        }
     },
     loadTransactions: function() {
         $.ajax({
