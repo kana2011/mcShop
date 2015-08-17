@@ -9,12 +9,14 @@ Polymer({
             if(this.transactions[i].status == 0) {
                 var item = $(this.$.table).children()[i];
                 $(item).css('background-color', '#FFDFDF');
+                this.transactions[i].amount = "Error";
             } else if(this.transactions[i].status == 1) {
                 var item = $(this.$.table).children()[i];
                 $(item).css('background-color', '#DFFFDF');
             } else if(this.transactions[i].status == 2) {
                 var item = $(this.$.table).children()[i];
                 $(item).css('background-color', '#FFFFCC');
+                this.transactions[i].amount = "Pending";
             }
         }
     }
