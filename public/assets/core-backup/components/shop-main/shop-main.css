@@ -129,11 +129,3 @@ shop-drawer-item.iron-selected {
     background-color: #4caf50;
     color: #ffffff
 }
-.loadingBG{
-  background: transparent;
-  color: transparent;
-  transition: background linear 1s, opacity linear 1s, color linear .6s;
-}
-[isLoading] > .loadingBG{
-  background: #FFF;
-}

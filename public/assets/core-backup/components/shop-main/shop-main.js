@@ -3,7 +3,6 @@ Polymer({
     is: "shop-main",
     ready: function() {
         app = this;
-        this.loadingScreen = document.getElementById("loadingScreen");
         this.loading = true;
         this.logout = this.logoutFunc;
         this.selectedPage = 1;
@@ -18,7 +17,11 @@ Polymer({
         app.showLogin = false;
         app.showMain = false;
         app.loading = true;
-        api.check(function(data) {
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "api/auth:check"
+        }).done(function(data) {
             if(data.result) {
                 app.loadData();
                 app.loadTransactions();
@@ -81,11 +84,15 @@ Polymer({
     },
     checkLoginFunc: function(event, detail, sender) {
         var login = detail.me;
-        var data = {
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "../../../../api/auth:login",
+            data: {
                 username: detail.username,
                 password: detail.password
-            };
-        api.login(data,function(data){
+            }
+        }).done(function(data) {
             if(data.status) {
                 app.loadApp();
                 login.cla = "";

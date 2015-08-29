@@ -1,14 +1,22 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-elements/shop-elements.html">
+
+<link rel="import" href="../shop-login/shop-login.html">
+<link rel="import" href="../shop-listing/shop-listing.html">
+<link rel="import" href="../shop-transactions/shop-transactions.html">
+<link rel="import" href="../topup-tmtopup/topup-tmtopup.html">
 <dom-module name="shop-main" on-login-start="{{checkLogin}}" attributes="title">
     <template>
         <link rel="stylesheet" href="shop-main.css">
-        <shop-api></shop-api>
         <paper-toast id="mainToast" text=""></paper-toast>
-        <div class="center parent" id="loadingScreen" isLoading="{{loading}}">
-            <div class="center child loadingBG">
-                <paper-spinner active="{{loading}}"></paper-spinner><br><br>
-                <span>{{title}}</span>
+        <template if="{{loading}}" is="dom-if" id="loadingScreen">
+            <div class="center parent">
+                <div class="center child">
+                    <paper-spinner active></paper-spinner><br><br>
+                    <span>{{title}}</span>
+                </div>
             </div>
-        </div>
+        </template>
         <paper-dialog id="itemDialog" with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
             <h2 id="itemDialogTitle"></h2>
             <div id="itemDialogContent" class="flex">
