@@ -2,6 +2,7 @@
 
 use View;
 use Config;
+use DB;
 
 class HomeController extends Controller {
 
@@ -34,6 +35,19 @@ class HomeController extends Controller {
 	public function index()
 	{
 		return View::make('home')->withTitle(Config::get('mcshop.title'));
+	}
+
+	public function shop()
+	{
+        $result = array();
+        $groups = DB::select('select * from shopgroup');
+        foreach($groups as $group) {
+            $items = DB::select('select id, dispname, igroup, icomment, price from shopitem where igroup = ?', [$group->id]);
+            $group->items = $items;
+            $result[] = $group;
+        }
+        $fResult['shop'] = $result;
+        return $this->json($fResult);
 	}
 
 }

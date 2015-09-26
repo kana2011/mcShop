@@ -4,7 +4,31 @@
 <dom-module name="shop-login" attributes="title">
     <template>
         <link rel="stylesheet" href="shop-login.css">
-        <div class="center parent main">
+        <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
+            <section drawer>
+                <div style="background-image: url(https://minotar.net/avatar/char/256); height: 256px;">
+        	    	<!--<span id="userBadgeImage"><img src="{{avatar}}"></span>-->
+                    <div id="textProtection" class="style-scope shop-userbadge"></div>
+        	    	<span id="userBadgeName" class="style-scope shop-userbadge"><span class="style-scope shop-userbadge">test</span></span>
+        	    </div>
+                <paper-input id="username" style="padding-left: 16px; width: 224px; padding-top: 0;" class="{{cla}}" value="{{username}}" label="Username" disabled?="{{dis}}"></paper-input>
+                <paper-input id="password" style="padding-left: 16px; width: 224px; padding-top: 0;" class="{{cla}}" value="{{password}}" type="password" label="Password" disabled?="{{dis}}"></paper-input>
+                <paper-menu selected="{{selectedPage}}" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
+                    <shop-drawer-item onclick="{{onbuttonclick}}"><iron-icon icon="fa:sign-in"></iron-icon>Login</shop-drawer-item>
+                </paper-menu>
+            </section>
+            <paper-scroll-header-panel condenses="true" main keepCondensedHeader="true">
+                <paper-toolbar class="tall" mcShop-toolbar>
+                    <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+                    <div id="div" class="flex"></div>
+                    <paper-icon-button icon="search"></paper-icon-button>
+                    <paper-icon-button icon="more-vert"></paper-icon-button>
+                    <div class="bottom title" mcShop-title>{{title}}</div>
+                </paper-toolbar>
+                <shop-listing data="{{shop}}"></shop-listing>
+            </paper-scroll-header-panel>
+        </paper-drawer-panel>
+        <!--<div class="center parent main">
             <paper-material class="center child login-window">
                 <h1><span>{{title}}</span></h1>
                 <paper-input id="username" class="{{cla}}" value="{{username}}" label="Username" disabled?="{{dis}}"></paper-input><br>
@@ -16,7 +40,7 @@
                     </div>
                 </div>
             </paper-material>
-        </div>
+        </div>-->
         <paper-toast id="toast1" text="Wrong username or password."></paper-toast>
     </template>
     <script src="shop-login.js"></script>

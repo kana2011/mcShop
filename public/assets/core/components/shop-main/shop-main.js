@@ -9,6 +9,7 @@ Polymer({
         this.selectedPage = 1;
         this.cartIsOpen = 0;
         this.topupLoaded = false;
+        this.logged = false;
         this.loadApp();
     },
     listeners: {
@@ -36,7 +37,8 @@ Polymer({
             dataType: "json",
             url: "api/user:shop"
         }).done(function(data) {
-            app.cart = cart;
+            app.cartPreviewText = cart.previewText;
+            app.logged = true;
             app.user = {};
             app.user.id = data.id;
             app.user.username = data.username;
@@ -100,10 +102,26 @@ Polymer({
         });
     },
     openItemDialog: function(event, detail, sender) {
+        if(this.logged) {
+            data = detail.data;
+            if((this.user.money - cart.priceSum - data.price) < 0) {
+                $(this.$.mainToast).attr("text", "Not enough money");
+                this.$.mainToast.show();
+            } else {
+                cart.addItem(data);
+                $(this.$.mainToast).attr("text", "Added " + data.dispname + " to cart");
+                this.$.mainToast.show();
+            }
+        } else {
+            $(this.$.mainToast).attr("text", "Not logged in");
+            this.$.mainToast.show();
+        }
+        /*
         var data = detail.data;
         this.itemData = data;
         $(this.$.itemDialogTitle).html(data.dispname);
         this.$.itemDialog.open();
+        */
     },
     buyItem: function() {
         this.$.loadingDialog.open();
@@ -132,12 +150,20 @@ Polymer({
             dataType: "json",
             url: "api/auth:logout"
         }).done(function(data) {
+            //reload to prevent glitches
+            location.reload();
+            /*
+            app.logged = false;
             app.loadApp();
             login.$.toast1.hide();
+            */
         });
     },
     openCart: function() {
         this.$.cartDialog.open();
+    },
+    updatePreviewText: function() {
+        this.cartPreviewText = cart.previewText;
     }
 });
 
