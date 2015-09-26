@@ -36,6 +36,7 @@ Polymer({
             dataType: "json",
             url: "api/user:shop"
         }).done(function(data) {
+            app.cart = cart;
             app.user = {};
             app.user.id = data.id;
             app.user.username = data.username;
@@ -134,6 +135,9 @@ Polymer({
             app.loadApp();
             login.$.toast1.hide();
         });
+    },
+    openCart: function() {
+        this.$.cartDialog.open();
     }
 });
 

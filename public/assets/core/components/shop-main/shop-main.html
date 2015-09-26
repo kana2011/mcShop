@@ -22,6 +22,11 @@
             <paper-spinner active></paper-spinner>
             <div class="loadingContainer">Loading...</div>
         </paper-dialog>
+        <paper-dialog id="cartDialog" with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <div id="itemDialogContent" class="flex">
+                <shop-cart></shop-cart>
+            </div>
+        </paper-dialog>
         <template if="{{showMain}}" is="dom-if">
             <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
                 <section drawer>
@@ -51,6 +56,10 @@
                         </neon-animatable>
                         <neon-animatable nopadding>
                             <shop-listing data="{{shop}}"></shop-listing>
+                            <div cart-preview on-click="openCart">
+                                <p cart-header flex><span>{{cart.previewText}}</span></p>
+                                <paper-ripple></paper-ripple>
+                            </div>
                         </neon-animatable>
                         <neon-animatable id="topup">
                             <h2 mcShop-title-h2>Topup</h2>
