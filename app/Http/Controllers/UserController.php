@@ -30,6 +30,9 @@ class UserController extends Controller {
         $groups = DB::select('select * from shopgroup');
         foreach($groups as $group) {
             $items = DB::select('select id, dispname, igroup, icomment, price from shopitem where igroup = ?', [$group->id]);
+            foreach ($items as $item) {
+                $item->bg = "background-image: url(assets/item/" . $item->id . ".jpg);";
+            }
             $group->items = $items;
             $result[] = $group;
         }
