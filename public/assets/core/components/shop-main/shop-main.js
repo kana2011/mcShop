@@ -7,6 +7,7 @@ Polymer({
         this.loading = true;
         this.logout = this.logoutFunc;
         this.selectedPage = 1;
+        this.cartIsOpen = 0;
         this.topupLoaded = false;
         this.loadApp();
     },
@@ -85,7 +86,7 @@ Polymer({
                 username: detail.username,
                 password: detail.password
             };
-        api.login(data,function(data){
+        api.login(data, false, function(data){
             if(data.status) {
                 app.loadApp();
                 login.cla = "";

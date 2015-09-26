@@ -4,12 +4,15 @@
 <dom-module name="shop-listing" attributes="{{data}}">
     <template>
         <link rel="stylesheet" href="shop-listing.css">
-        <paper-tabs selected="{{selectedGroup}}">
+        <paper-tabs selected="{{selectedTab}}" on-click="tabChanged">
             <template is="dom-repeat" items="{{data}}" as="group">
                 <paper-tab>{{group.dispname}}</paper-tab>
             </template>
         </paper-tabs>
-        <neon-animated-pages selected="{{selectedGroup}}" entry-animation="slide-from-right-animation" exit-animation="slide-left-animation">
+        <div class="background">
+
+        </div>
+        <neon-animated-pages id="animatedPages" selected="{{selectedGroup}}" entry-animation="slide-from-right-animation" exit-animation="slide-left-animation">
             <template is="dom-repeat" items="{{data}}" as="group">
                 <neon-animatable>
                     <div class="chip-container">
