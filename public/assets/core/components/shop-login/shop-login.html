@@ -6,11 +6,7 @@
         <link rel="stylesheet" href="shop-login.css">
         <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
             <section drawer>
-                <div style="background-image: url(https://minotar.net/avatar/char/256); height: 256px;">
-        	    	<!--<span id="userBadgeImage"><img src="{{avatar}}"></span>-->
-                    <div id="textProtection" class="style-scope shop-userbadge"></div>
-        	    	<span id="userBadgeName" class="style-scope shop-userbadge"><span class="style-scope shop-userbadge">test</span></span>
-        	    </div>
+                <div style="background-image: url(https://minotar.net/avatar/char/256); height: 256px;"></div>
                 <paper-input id="username" style="padding-left: 16px; width: 224px; padding-top: 0;" class="{{cla}}" value="{{username}}" label="Username" disabled?="{{dis}}"></paper-input>
                 <paper-input id="password" style="padding-left: 16px; width: 224px; padding-top: 0;" class="{{cla}}" value="{{password}}" type="password" label="Password" disabled?="{{dis}}"></paper-input>
                 <paper-menu selected="{{selectedPage}}" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
@@ -28,19 +24,6 @@
                 <shop-listing data="{{shop}}"></shop-listing>
             </paper-scroll-header-panel>
         </paper-drawer-panel>
-        <!--<div class="center parent main">
-            <paper-material class="center child login-window">
-                <h1><span>{{title}}</span></h1>
-                <paper-input id="username" class="{{cla}}" value="{{username}}" label="Username" disabled?="{{dis}}"></paper-input><br>
-                <paper-input id="password" class="{{cla}}" value="{{password}}" type="password" label="Password" disabled?="{{dis}}"></paper-input><br><br>
-                <div layout horizontal>
-                    <div flex></div>
-                    <div>
-                        <paper-button class="login-button" onclick="{{onbuttonclick}}" disabled?="{{dis}}" raised>Login <core-icon icon="fa:arrow-right"></core-icon></paper-button>
-                    </div>
-                </div>
-            </paper-material>
-        </div>-->
         <paper-toast id="toast1" text="Wrong username or password."></paper-toast>
     </template>
     <script src="shop-login.js"></script>

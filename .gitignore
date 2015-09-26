@@ -10,3 +10,4 @@ sublime/
 public/test/
 config/tmtopup.php
 composer.lock
+public/images/items/*
