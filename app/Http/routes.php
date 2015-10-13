@@ -14,7 +14,8 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('home', 'HomeController@index');
+Route::post('/', 'HomeController@index');
+//Route::get('home', 'HomeController@index');
 
 /*
 Route::controllers([
@@ -23,9 +24,13 @@ Route::controllers([
 ]);
 */
 
-Route::get('assets/item/{file}',function($file){
-	return app()->make("App\\Http\\Controllers\\HomeController")->callAction("getItemPic", [$file]);
-});
+Route::any('{r?}',function($r=""){
+	App::abort(404, 'File not found');
+})->where('r','.*');
+
+Route::any('api/{r?}',function($r=""){
+	App::abort(403, 'No Permission');
+})->where('r','.*');
 
 Route::post('api/{method}/{par?}',function($method,$par=""){
 	$class = "";
@@ -59,5 +64,5 @@ Route::post('api/{method}/{par?}',function($method,$par=""){
 	return app()->make($controller)->callAction($fn,array());
 })->where('par', '.*');
 
-// Temporary use for test POST only
-Route::get('gen', 'ApiController@gen');
+
+

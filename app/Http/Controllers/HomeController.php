@@ -3,6 +3,7 @@
 use View;
 use Config;
 use DB;
+use Input;
 
 class HomeController extends Controller {
 
@@ -34,6 +35,9 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
+		//Input::get('path');
+		//Input::get('statusCode');
+		//Input::get('reason');
 		return View::make('home')->withTitle(Config::get('mcshop.title'));
 	}
 

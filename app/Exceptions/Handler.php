@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler {
 
@@ -36,6 +37,13 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+		if($this->isHttpException($e)){
+			$statusCode = $e->getStatusCode();
+			switch($statusCode){
+				case '403': case '404':
+				return response()->view('handle',array("path"=>$request->getPathInfo(),"statusCode"=>$statusCode,"reason"=>$e->getMessage()),404);
+			}
+		}
 		return parent::render($request, $e);
 	}
 
