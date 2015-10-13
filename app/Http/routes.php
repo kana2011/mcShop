@@ -32,6 +32,10 @@ Route::any('api/{r?}',function($r=""){
 	App::abort(403, 'No Permission');
 })->where('r','.*');
 
+Route::get('assets/item/{file}',function($file){
+	return app()->make("App\\Http\\Controllers\\HomeController")->callAction("getItemPic", [$file]);
+});
+
 Route::post('api/{method}/{par?}',function($method,$par=""){
 	$class = "";
 	$fn = "";
@@ -63,6 +67,3 @@ Route::post('api/{method}/{par?}',function($method,$par=""){
 	}
 	return app()->make($controller)->callAction($fn,array());
 })->where('par', '.*');
-
-
-
