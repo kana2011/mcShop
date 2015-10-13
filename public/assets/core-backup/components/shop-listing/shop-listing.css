@@ -1,0 +1,41 @@
+:host {
+    padding: 0;
+}
+
+paper-tabs, paper-toolbar {
+    background-color: #00bcd4;
+    color: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.chip-container {
+    padding: 48px;
+}
+
+.chip {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    border-radius: 3px;
+    margin: 4px;
+    overflow: hidden;
+    text-align: start;
+    background-color: #fff;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+.chip-top {
+    width: 200px;
+    height: 200px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.chip-bottom {
+    padding: 8px;
+    line-height: 1.5;
+}
+
+.chip-title {
+    font-weight: bold;
+}

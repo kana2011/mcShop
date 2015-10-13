@@ -4,7 +4,7 @@
     <template>
         <div class="chip" on-tap="openDialog">
             <paper-ripple></paper-ripple>
-            <div class="chip-top" style="background-image:url({{item.bg}});"></div>
+            <div id="itemPic" class="chip-top" style="{{data.bg}}"></div>
             <div class="chip-bottom">
                 <div class="chip-title"><span>{{data.dispname}}</span></div>
                 <div class="chip-desc">{{data.price}} {{translations.currency}}</div>

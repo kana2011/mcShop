@@ -1,0 +1,39 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+
+<dom-module name="shop-item-detail" attributes="{{data}}">
+    <template>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="shop-item-detail.css">
+        <div class="horizontal layout" style="width: 100%;">
+            <div class="flex"></div>
+            <div>
+                <paper-icon-button id="close-button" icon="clear" on-tap="closeDialog"></paper-icon-button>
+            </div>
+        </div>
+        <div class="center parent">
+            <div class="center child item-info-container row">
+                <div class="col-sm-12 col-md-6 item-pic-container">
+                    <div id="itemPic" class="item-pic" style="{{data.bg}}"></div>
+                </div>
+                <div class="col-sm-12 col-md-6 item-info">
+                    <h1 class="item-info-heading">{{data.dispname}}</h1>
+                    <div class="row" style="padding-left: 24px;">
+                        <div class="col-md-4 desc">Price</div>
+                        <div class="col-md-8"><span>{{data.price}}</span></div>
+                        <div class="col-md-12" style="height: 8px;"></div>
+                        <div class="col-md-4 desc">Description</div>
+                        <div class="col-md-8"><span>{{data.icomment}}</span></div>
+                        <div class="col-md-12" style="height: 24px;"></div>
+                        <div class="col-md-12 buy-container">
+                            <paper-button id="buyButton" on-tap="nextState" raised class="buy-button">Buy</paper-button>
+                            <paper-button id="confirmButton" on-tap="nextState" raised class="confirm-button hidden">Confirm</paper-button>
+                            <h3 id="boughtText" class="bought-text hidden">Bought.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="shop-item-detail.js"></script>
+</dom-module>

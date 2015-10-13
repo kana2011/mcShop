@@ -1,0 +1,42 @@
+.center .parent {
+    position: relative;
+}
+
+.center .child {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    text-align: left;
+    padding-top: 88px;
+}
+
+.tmtopup-container {
+    padding-top: 72px;
+    width: 272px;
+}
+
+.field-container {
+    width: 272px;
+}
+
+.button-container {
+    width: 272px;
+}
+
+.topup-button {
+    background: #4CAF50;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+}
+
+@media (min-width: 992px) {
+    .field-container {
+        width: 480px;
+    }
+
+    .button-container {
+        width: 200px;
+        padding-top: 20px;
+    }
+}

@@ -1,0 +1,39 @@
+<dom-module name="shop-pages-loading-screen" isLoading="{{nowLoading}}">
+	<template>
+	<style type="text/css">
+		.loadingBG{
+		  background: transparent;
+		  color: transparent;
+		  transition: background linear 1s, opacity linear 1s, color linear .6s;
+		}
+		[isLoading] > .loadingBG{
+		  background: #FFF;
+		}
+	</style>
+		<div class="center parent" id="loadingScreen" isLoading="{{loading}}">
+			<div class="center child loadingBG">
+				<paper-spinner active="{{nowLoading}}"></paper-spinner><br><br>
+				<span>{{title}}</span>
+		    </div>
+		</div>
+	</template>
+</dom-module>
+<script>
+	var loadingScr;
+	Polyer({
+		is: "shop-pages-loading-screen",
+		ready: function(){
+			loadingScr = this;
+			this.nowLoading = false;
+		},
+		toggle: function(){
+			this.nowLoading = !this.nowLoading;
+		},
+		turnOn: function(){
+			this.nowLoading = true;
+		},
+		turnOff: function(){
+			this.nowLoading = false;
+		}
+	});
+</script>

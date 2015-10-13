@@ -23,6 +23,10 @@ Route::controllers([
 ]);
 */
 
+Route::get('assets/item/{file}',function($file){
+	return app()->make("App\\Http\\Controllers\\HomeController")->callAction("getItemPic", [$file]);
+});
+
 Route::post('api/{method}/{par?}',function($method,$par=""){
 	$class = "";
 	$fn = "";

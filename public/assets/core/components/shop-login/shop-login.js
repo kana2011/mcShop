@@ -3,8 +3,18 @@ Polymer({
     is: 'shop-login',
     ready: function() {
         login = this;
+        this.loadShop();
         this.onbuttonclick = this.validate;
         this.title;
+    },
+    loadShop: function() {
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "api/home:shop"
+        }).done(function(data) {
+            login.shop = data.shop;
+        });
     },
     validate: function() {
         if(!login.username) {

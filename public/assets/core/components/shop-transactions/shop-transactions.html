@@ -14,6 +14,12 @@
                 </tr>
             </thead>
             <tbody id="table">
+                <tr class="sum-row">
+                    <td data-title="TXID"></td>
+                    <td data-title="Description">Sum</td>
+                    <td data-title="Amount">{{sum}}</td>
+                    <td data-title="Time">{{sum_created_at}}</td>
+                </tr>
                 <template is="dom-repeat" items="{{transactions}}" as="transaction">
                     <tr class="{{transaction.status}}">
                         <td data-title="TXID">{{transaction.txid}}</td>

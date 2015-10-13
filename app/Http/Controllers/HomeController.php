@@ -2,6 +2,7 @@
 
 use View;
 use Config;
+use DB;
 
 class HomeController extends Controller {
 
@@ -34,6 +35,36 @@ class HomeController extends Controller {
 	public function index()
 	{
 		return View::make('home')->withTitle(Config::get('mcshop.title'));
+	}
+
+	public function shop()
+	{
+        $result = array();
+        $groups = DB::select('select * from shopgroup');
+        foreach($groups as $group) {
+            $items = DB::select('select id, dispname, igroup, icomment, price from shopitem where igroup = ?', [$group->id]);
+            foreach ($items as $item) {
+                $item->bg = "background-image: url(assets/item/" . $item->id . ".jpg);";
+            }
+            $group->items = $items;
+            $result[] = $group;
+        }
+        $fResult['shop'] = $result;
+        return $this->json($fResult);
+	}
+
+	public function getItemPic($file) {
+		$file = explode(".jpg", $file)[0];
+		if(!is_numeric($file)) {
+			return $this->failed("invalid_file_name");
+		} else {
+			header('Content-Type: image/jpeg');
+			if(file_exists("images/items/" . $file . ".jpg")) {
+				readfile("images/items/" . $file . ".jpg");
+			} else {
+				readfile("images/placeholder.jpg");
+			}
+		}
 	}
 
 }

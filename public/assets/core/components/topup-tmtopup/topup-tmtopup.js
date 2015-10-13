@@ -13,6 +13,8 @@ Polymer({
         iframe.style.display = "hidden";
         iframe.setAttribute("src", "/assets/core/components/topup-tmtopup/tmt-custom3rd.html");
         document.body.appendChild(iframe);
+
+        console.log("tmtopup ready!");
     },
     submitTopup: function() {
         submit_tmnc();

@@ -1,0 +1,89 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-elements/shop-elements.html">
+
+<link rel="import" href="../shop-login/shop-login.html">
+<link rel="import" href="../shop-listing/shop-listing.html">
+<link rel="import" href="../shop-transactions/shop-transactions.html">
+<link rel="import" href="../topup-tmtopup/topup-tmtopup.html">
+<dom-module name="shop-main" on-login-start="{{checkLogin}}" attributes="title">
+    <template>
+        <link rel="stylesheet" href="shop-main.css">
+        <paper-toast id="mainToast" text=""></paper-toast>
+        <template if="{{loading}}" is="dom-if" id="loadingScreen">
+            <div class="center parent">
+                <div class="center child">
+                    <paper-spinner active></paper-spinner><br><br>
+                    <span>{{title}}</span>
+                </div>
+            </div>
+        </template>
+        <paper-dialog id="itemDialog" with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <h2 id="itemDialogTitle"></h2>
+            <div id="itemDialogContent" class="flex">
+            </div>
+            <div id="itemDialogButtons" class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button class="btn-green" on-tap="buyItem" dialog-confirm autofocus>Buy</paper-button>
+            </div>
+        </paper-dialog>
+        <paper-dialog id="loadingDialog" modal entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <paper-spinner active></paper-spinner>
+            <div class="loadingContainer">Loading...</div>
+        </paper-dialog>
+        <template if="{{showMain}}" is="dom-if">
+            <paper-drawer-panel responsiveWidth="1024px" mcShop-main>
+                <section drawer>
+                    <shop-userbadge user="{{user}}"></shop-userbadge>
+                    <paper-menu selected="{{selectedPage}}" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
+                        <shop-drawer-item style="display: none;" clickable><iron-icon icon="home"></iron-icon>Home</shop-drawer-item>
+                        <shop-drawer-item clickable><iron-icon icon="shopping-cart"></iron-icon>Shop</shop-drawer-item>
+                        <shop-drawer-item on-click="loadTopup" clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
+                        <shop-drawer-item on-click="loadTransactions" clickable><iron-icon item-icon icon="view-headline"></iron-icon>Transactions</shop-drawer-item>
+                        <shop-drawer-item clickable><iron-icon icon="book"></iron-icon>Wiki</shop-drawer-item>
+                        <shop-divider></shop-divider>
+                        <div id="pluginmenu"></div>
+                        <shop-drawer-item onclick="{{logout}}"><iron-icon icon="fa:sign-out"></iron-icon>Logout</shop-drawer-item>
+                    </paper-menu>
+                </section>
+                <paper-scroll-header-panel condenses="true" main keepCondensedHeader="true">
+                    <paper-toolbar class="tall" mcShop-toolbar>
+                        <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+                        <div id="div" class="flex"></div>
+                        <paper-icon-button icon="search"></paper-icon-button>
+                        <paper-icon-button icon="more-vert"></paper-icon-button>
+                        <div class="bottom title" mcShop-title>{{title}}</div>
+                    </paper-toolbar>
+                    <neon-animated-pages selected="{{selectedPage}}" entry-animation="fade-in-animation" exit-animation="fade-out-animation" mcShop-contents>
+                        <neon-animatable>
+                            <h2 mcShop-title-h2>Promotion</h2>
+                        </neon-animatable>
+                        <neon-animatable nopadding>
+                            <shop-listing data="{{shop}}"></shop-listing>
+                        </neon-animatable>
+                        <neon-animatable id="topup">
+                            <h2 mcShop-title-h2>Topup</h2>
+                            <paper-input-container>
+                                <label>Truemoney</label>
+                                <input is="iron-input" maxlength="14">
+                                <paper-input-char-counter></paper-input-char-counter>
+                            </paper-input-container>
+                            <paper-button>Refill!</paper-button>
+                        </neon-animatable>
+                        <neon-animatable>
+                            <h2 mcShop-title-h2>Transactions</h2>
+                            <shop-transactions transactions="{{transactions}}"></shop-transactions>
+                        </neon-animatable>
+                        <neon-animatable>
+                            <h2 mcShop-title-h2>Wiki</h2>
+                        </neon-animatable>
+                    </neon-animated-pages>
+                </paper-scroll-header-panel>
+            </paper-drawer-panel>
+        </template>
+        <template if="{{showLogin}}" is="dom-if">
+            <shop-login title="{{title}}"></shop-login>
+        </template>
+    </template>
+    <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="shop-main.js"></script>
+</dom-module>

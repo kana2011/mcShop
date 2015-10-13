@@ -1,8 +1,9 @@
 <link rel="import" href="../shop-elements/polymer-all-elements.html">
 <link rel="import" href="../shop-elements/shop-elements.html">
-<link rel="import" href="../../../components/fontawesome-iconset/fa-icons.html">
 <dom-module name="topup-tmtopup">
     <template>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="topup-tmtopup.css">
         <paper-dialog style="min-width: 400px;" id="loadingDialog" modal with-backdrop entry-animation="scale-up-animation" exit-animation="fade-out-animation">
             <paper-progress style="width: 352px; margin-bottom: 24px;" indeterminate></paper-progress>
         </paper-dialog>
@@ -24,16 +25,23 @@
             </div>
         </paper-dialog>
         <template if="{{showtopup}}" is="dom-if">
-            <h2 mcShop-title-h2>Topup</h2>
-            <paper-input-container>
-                <label>Truemoney</label>
-                <input id="tmn_password" name="tmn_password" is="iron-input" maxlength="14">
-                <paper-input-char-counter></paper-input-char-counter>
-            </paper-input-container>
-            <input id="ref1" name="ref1" type="hidden" value="{{userid}}">
-            <input id="ref2" name="ref2" type="hidden" value="{{userid}}">
-            <input id="ref3" name="ref3" type="hidden" value="{{userid}}">
-            <paper-button on-click="submitTopup">Topup</paper-button>
+            <div class="center parent">
+                <div class="center child row">
+                    <div class="col-sm-12 col-md-6 field-container">
+                        <paper-input-container>
+                            <label>Truemoney</label>
+                            <input id="tmn_password" name="tmn_password" is="iron-input" maxlength="14">
+                            <paper-input-char-counter></paper-input-char-counter>
+                        </paper-input-container>
+                        <input id="ref1" name="ref1" type="hidden" value="{{userid}}">
+                        <input id="ref2" name="ref2" type="hidden" value="{{userid}}">
+                        <input id="ref3" name="ref3" type="hidden" value="{{userid}}">
+                    </div>
+                    <div class="col-sm-12 col-md-6 button-container">
+                        <paper-button raised class="topup-button" on-click="submitTopup">Topup</paper-button>
+                    </div>
+                </div>
+            </div>
         </template>
     </template>
     <script src="../../../components/jquery/dist/jquery.min.js"></script>

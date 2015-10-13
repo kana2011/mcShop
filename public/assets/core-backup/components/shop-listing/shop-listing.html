@@ -1,0 +1,26 @@
+<link rel="import" href="../shop-elements/polymer-all-elements.html">
+<link rel="import" href="../shop-item/shop-item.html">
+
+<dom-module name="shop-listing" attributes="{{data}}">
+    <template>
+        <link rel="stylesheet" href="shop-listing.css">
+        <paper-tabs selected="{{selectedGroup}}">
+            <template is="dom-repeat" items="{{data}}" as="group">
+                <paper-tab>{{group.dispname}}</paper-tab>
+            </template>
+        </paper-tabs>
+        <neon-animated-pages selected="{{selectedGroup}}" entry-animation="slide-from-right-animation" exit-animation="slide-left-animation">
+            <template is="dom-repeat" items="{{data}}" as="group">
+                <neon-animatable>
+                    <div class="chip-container">
+                        <template is="dom-repeat" items="{{group.items}}" as="item">
+                            <shop-item data="{{item}}"></shop-item>
+                        </template>
+                    </div>
+                </neon-animatable>
+            </template>
+        </neon-animated-pages>
+    </template>
+    <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="shop-listing.js"></script>
+</dom-module>
