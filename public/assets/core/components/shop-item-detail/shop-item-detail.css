@@ -1,0 +1,65 @@
+#close-button {
+    margin: 16px;
+}
+
+.center .parent {
+    position: relative;
+}
+
+.center .child {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    text-align: center;
+}
+
+.item-info-container {
+    padding-top: 88px;
+    text-align: left;
+}
+
+.item-info {
+    width: 272px;
+    padding-left: 32px;
+    text-align: left;
+}
+
+.item-info-heading {
+    margin: 16px;
+    margin-top: 48px;
+}
+
+.item-pic {
+    background-size:100%;
+    width: 272px;
+    height: 272px;
+}
+
+.desc {
+    color: rgb(119, 119, 119);
+}
+
+.buy-container {
+    padding: 0px;
+}
+
+.buy-button {
+    background: #4CAF50;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+}
+
+.confirm-button {
+    background: #FF9800;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+}
+
+.bought-text {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    color: rgb(119, 119, 119);
+}

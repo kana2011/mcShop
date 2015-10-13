@@ -33,9 +33,9 @@
                     <shop-userbadge user="{{user}}"></shop-userbadge>
                     <paper-menu selected="{{selectedPage}}" excludedLocalNames="shop-divider" selectable="[clickable]" mcShop-menu>
                         <shop-drawer-item style="display: none;" clickable><iron-icon icon="home"></iron-icon>Home</shop-drawer-item>
-                        <shop-drawer-item clickable><iron-icon icon="shopping-cart"></iron-icon>Shop</shop-drawer-item>
-                        <shop-drawer-item on-click="loadTopup" clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
-                        <shop-drawer-item on-click="loadTransactions" clickable><iron-icon item-icon icon="view-headline"></iron-icon>Transactions</shop-drawer-item>
+                        <shop-drawer-item on-click="goShop" clickable><iron-icon icon="shopping-cart"></iron-icon>Shop</shop-drawer-item>
+                        <shop-drawer-item on-click="goTopup" clickable><iron-icon item-icon icon="credit-card"></iron-icon>Topup</shop-drawer-item>
+                        <shop-drawer-item on-click="goTransactions" clickable><iron-icon item-icon icon="view-headline"></iron-icon>Transactions</shop-drawer-item>
                         <shop-drawer-item clickable><iron-icon icon="book"></iron-icon>Wiki</shop-drawer-item>
                         <shop-divider></shop-divider>
                         <div id="pluginmenu"></div>
@@ -51,16 +51,17 @@
                         <div class="bottom title" mcShop-title>{{title}}</div>
                     </paper-toolbar>
                     <neon-animated-pages selected="{{selectedPage}}" entry-animation="fade-in-animation" exit-animation="fade-out-animation" mcShop-contents>
-                        <neon-animatable>
-                            <h2 mcShop-title-h2>Promotion</h2>
-                        </neon-animatable>
-                        <neon-animatable nopadding>
-                            <shop-listing data="{{shop}}"></shop-listing>
-                            <div cart-preview on-click="openCart">
-                                <p cart-header flex><span>{{cartPreviewText}}</span></p>
-                                <paper-ripple></paper-ripple>
-                            </div>
-                        </neon-animatable>
+                        <neon-animatable></neon-animatable>
+                        <neon-animated-pages selected="{{selectedShopPage}}" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
+                            <neon-animatable>
+                                <shop-listing data="{{shop}}"></shop-listing>
+                                <!--<div cart-preview on-click="openCart">
+                                    <p cart-header flex><span>{{cartPreviewText}}</span></p>
+                                    <paper-ripple></paper-ripple>
+                                </div>-->
+                            </neon-animatable>
+                            <shop-item-detail></shop-item-detail>
+                        </neon-animated-pages>
                         <neon-animatable id="topup">
                             <h2 mcShop-title-h2>Topup</h2>
                             <paper-input-container>
@@ -86,5 +87,6 @@
         </template>
     </template>
     <script src="../../../components/jquery/dist/jquery.min.js"></script>
+    <script src="../../../components/rlite/rlite.min.js"></script>
     <script src="shop-main.js"></script>
 </dom-module>

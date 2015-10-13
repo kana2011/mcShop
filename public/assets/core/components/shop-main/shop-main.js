@@ -1,20 +1,93 @@
 var app;
+var r;
 Polymer({
     is: "shop-main",
     ready: function() {
         app = this;
+        this.setupRouter();
         this.loadingScreen = document.getElementById("loadingScreen");
         this.loading = true;
         this.logout = this.logoutFunc;
         this.selectedPage = 1;
+        this.selectedShopPage = 0;
         this.cartIsOpen = 0;
         this.topupLoaded = false;
         this.logged = false;
-        this.loadApp();
+        app.go('/');
+    },
+    setupRouter: function() {
+        r = Rlite();
+
+        r.add('', function() {
+            app.loadApp();
+        });
+
+        r.add('shop', function () {
+            app.selectedPage = 1;
+        });
+
+        r.add('shop/:group/:id', function (r) {
+            if(app.logged) {
+                var item = null;
+                for(var i = 0; i < app.shop.length; i++) {
+                    if(app.shop[i].id == r.params.group) {
+                        var group = app.shop[i];
+                        for(var j = 0; j < group.items.length; j++) {
+                            if(group.items[j].id == r.params.id) {
+                                item = group.items[j];
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                if(item != null) {
+                    app.showItem(item);
+                } else {
+                    app.go('/shop');
+                }
+            } else {
+                $(app.$.mainToast).attr("text", "Not logged in");
+                app.$.mainToast.show();
+            }
+        });
+
+        r.add('login', function () {
+            app.loading = false;
+            app.showLogin = true;
+            app.checkLogin = app.checkLoginFunc;
+        });
+
+        r.add('transactions', function () {
+            app.loadTransactions();
+            app.selectedPage = 3;
+        });
+
+        r.add('topup', function () {
+            app.selectedPage = 2;
+        });
+
+        r.add('logout', function () {
+            app.logoutFunc();
+        });
+
+        // Hash-based routing
+        function processHash() {
+            var hash = location.hash || '#!';
+            r.run(hash.slice(2));
+        }
+
+        window.addEventListener('hashchange', processHash);
+        processHash();
+    },
+    go: function(url) {
+        window.location.hash = "#!" + url;
+        r.run(url);
     },
     listeners: {
         'login-start': 'checkLoginFunc',
-        'open-item-dialog': 'openItemDialog'
+        'open-item-dialog': 'openItemDialog',
+        'buy-item': 'buyItem'
     },
     loadApp: function() {
         app.showLogin = false;
@@ -24,19 +97,14 @@ Polymer({
             if(data.result) {
                 app.loadData();
                 app.loadTransactions();
+                app.go('/shop');
             } else {
-                app.loading = false;
-                app.showLogin = true;
-                app.checkLogin = app.checkLoginFunc;
+                app.go('/login');
             }
         });
     },
     loadData: function() {
-        $.ajax({
-            method: "POST",
-            dataType: "json",
-            url: "api/user:shop"
-        }).done(function(data) {
+        api.do("user:shop", {}, false, function(data) {
             app.cartPreviewText = cart.previewText;
             app.logged = true;
             app.user = {};
@@ -67,6 +135,12 @@ Polymer({
             }, 100);
         }
     },
+    goShop: function() {
+        app.go('/shop');
+    },
+    goTransactions: function() {
+        app.go('/transactions');
+    },
     loadTransactions: function() {
         $.ajax({
             method: "POST",
@@ -76,6 +150,9 @@ Polymer({
             app.transactions = data.result;
             transactions.color();
         });
+    },
+    goTopup: function() {
+        app.go('/topup');
     },
     loadTopup: function() {
         if(!this.topupLoaded) {
@@ -91,7 +168,7 @@ Polymer({
             };
         api.login(data, false, function(data){
             if(data.status) {
-                app.loadApp();
+                app.go('/');
                 login.cla = "";
                 login.username = "";
                 login.password = "";
@@ -102,20 +179,7 @@ Polymer({
         });
     },
     openItemDialog: function(event, detail, sender) {
-        if(this.logged) {
-            data = detail.data;
-            if((this.user.money - cart.priceSum - data.price) < 0) {
-                $(this.$.mainToast).attr("text", "Not enough money");
-                this.$.mainToast.show();
-            } else {
-                cart.addItem(data);
-                $(this.$.mainToast).attr("text", "Added " + data.dispname + " to cart");
-                this.$.mainToast.show();
-            }
-        } else {
-            $(this.$.mainToast).attr("text", "Not logged in");
-            this.$.mainToast.show();
-        }
+        app.go('/shop/' + detail.data.igroup + '/' + detail.data.id);
         /*
         var data = detail.data;
         this.itemData = data;
@@ -123,14 +187,28 @@ Polymer({
         this.$.itemDialog.open();
         */
     },
-    buyItem: function() {
+    showItem: function(data) {
+        shopItemDetail.setup(data);
+        app.selectedShopPage = 1;
+        /*
+        if((this.user.money - cart.priceSum - data.price) < 0) {
+            $(this.$.mainToast).attr("text", "Not enough money");
+            this.$.mainToast.show();
+        } else {
+            cart.addItem(data);
+            $(this.$.mainToast).attr("text", "Added " + data.dispname + " to cart");
+            this.$.mainToast.show();
+        }
+        */
+    },
+    buyItem: function(event, detail, sender) {
         this.$.loadingDialog.open();
         $.ajax({
             method: "POST",
             dataType: "json",
             url: "api/shop:buy",
             data: {
-                itemid: this.itemData.id
+                itemid: detail.data.id
             }
         }).done(function(data) {
             app.$.loadingDialog.close();
