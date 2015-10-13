@@ -70,7 +70,7 @@ paper-scroll-header-panel .bg-container {
   background: #4285F4
 }
 paper-scroll-header-panel #headerBg {
-  background: url('../../../../images/bg.png');
+  background: url('../../../../assets/images/bg.png');
   background-size: cover;
   background-position: 75%
 }
