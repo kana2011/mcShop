@@ -10,6 +10,7 @@ paper-tabs, paper-toolbar {
 
 .chip-container {
     padding: 48px;
+    background-color: #efefef;
 }
 
 .chip {
