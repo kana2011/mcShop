@@ -64,7 +64,12 @@ Polymer({
         });
 
         r.add('topup', function () {
-            app.selectedPage = 2;
+            if(app.topupmethod) {
+                app.loadTopup();
+                app.selectedPage = 2;
+            } else {
+                app.go('/');
+            }
         });
 
         r.add('logout', function () {

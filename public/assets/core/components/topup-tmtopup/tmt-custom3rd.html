@@ -1,0 +1,39 @@
+<script src="https://www.tmtopup.com/topup/3rdTopup.php?uid=72520"></script>
+<script>
+    function getPid() {
+        var pid = searchpid(submit_tmnc.toString(), "input_pid.value = \"");
+        if(pid == false) {
+            var pid2 = searchpid(submit_payment.toString(), "\"pid\" : \"");
+            if(pid2 == false) {
+                return false;
+            } else {
+                return pid2;
+            }
+        } else {
+            return pid;
+        }
+    }
+
+    function searchpid(d, s) {
+        var pos = d.indexOf(s);
+        if(pos == -1) {
+            return false;
+        }
+        var pid = d.substring(pos + s.length, pos + s.length + 25);
+        return trimPid(pid, 25);
+    }
+
+    function trimPid(pid, l) {
+        if(!isInt(pid.substring(l - 1, l))) {
+            return trimPid(pid.substring(0, l - 1), l - 1);
+        } else {
+            return pid;
+        }
+    }
+
+    function isInt(value) {
+        return !isNaN(value) &&
+            parseInt(Number(value)) == value &&
+            !isNaN(parseInt(value, 10));
+    }
+</script>
