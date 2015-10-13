@@ -18,8 +18,14 @@
     text-align: left;
 }
 
+.item-pic-container {
+    width: 272px;
+    height: 272px;
+}
+
 .item-info {
     width: 272px;
+    height: 272px;
     padding-left: 32px;
     text-align: left;
 }
