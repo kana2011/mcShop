@@ -15,7 +15,7 @@ Polymer({
             } else if(this.transactions[i].status == 1) {
                 var item = $(this.$.table).children()[j];
                 $(item).css('background-color', '#DFFFDF');
-                sum += this.transactions[i].amount;
+                sum += parseInt(this.transactions[i].amount);
             } else if(this.transactions[i].status == 2) {
                 var item = $(this.$.table).children()[j];
                 $(item).css('background-color', '#FFFFCC');
