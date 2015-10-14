@@ -34,7 +34,6 @@
 		*/
 		public function connect()
 		{
-			echo $this->host . ", " . $this->port . ", " . $this->password;
 			$this->stream = fsockopen($this->host, $this->port,$errno,$errstr,$this->timeout);
 			if($this->stream){
 				$this->writeRawByte(21);
