@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     /*
     |--------------------------------------------------------------------------
     | Minecraft Server Connector
@@ -11,7 +11,7 @@ return [
     | Available adapters are App\Minecraft\RCON, App\Minecraft\Websend.
     |
     */
-    
-    'adapter' => 'App\Minecraft\RCON'
-    
+
+    'adapter' => 'App\Minecraft\Websend'
+
 ];

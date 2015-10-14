@@ -49,6 +49,7 @@ class ShopController extends Controller {
             //connect to mc server
             if($minecraft->connect()) {
                 $minecraft->sendCommand(str_replace("%player%", $this->user->username, $item->cmd));
+                $minecraft->disconnect();
                 $this->user->updateStatus($txid);
                 $this->user->updateDescription($txid,"Bought " . $item->dispname);
                 return $this->success($this->user->getMoney());
