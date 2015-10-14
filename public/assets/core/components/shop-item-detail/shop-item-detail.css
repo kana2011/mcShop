@@ -69,3 +69,22 @@
     text-align: center;
     color: rgb(119, 119, 119);
 }
+
+@media (min-width: 992px) {
+    .item-info {
+        width: 544px;
+    }
+
+    .item-info-container {
+    }
+}
+
+@media (min-width: 1200px) {
+    .item-info {
+        width: 544px;
+    }
+
+    .item-info-container {
+        width: 900px;
+    }
+}

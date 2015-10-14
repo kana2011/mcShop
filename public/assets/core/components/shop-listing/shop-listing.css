@@ -19,6 +19,8 @@ paper-tabs, paper-toolbar {
     position: relative;
     border-radius: 3px;
     margin: 4px;
+    width: 200px;
+    height: 237px;
     overflow: hidden;
     text-align: start;
     background-color: #fff;
@@ -39,6 +41,10 @@ paper-tabs, paper-toolbar {
 
 .chip-title {
     font-weight: bold;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 184px;
+    height: 21px;
 }
 
 .background {

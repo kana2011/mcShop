@@ -4,7 +4,7 @@
 <dom-module name="shop-listing" attributes="{{data}}">
     <template>
         <link rel="stylesheet" href="shop-listing.css">
-        <paper-tabs selected="{{selectedTab}}" on-click="tabChanged">
+        <paper-tabs selected="{{selectedTab}}" on-click="tabChanged" scrollable>
             <template is="dom-repeat" items="{{data}}" as="group">
                 <paper-tab>{{group.dispname}}</paper-tab>
             </template>
