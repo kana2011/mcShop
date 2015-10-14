@@ -60,9 +60,9 @@ Route::post('api/{method}/{par?}',function($method,$par=""){
 	return app()->make($controller)->callAction($fn,array());
 })->where('par', '.*');
 
-Route::any('{r?}',function($r=""){
+Route::any('{p?}/{r?}',function($p="",$r=""){
 	App::abort(404, 'File not found');
-})->where('r','.*');
+})->where(['r'=>'.*','p'=>'^(?:(?!(assets|api|images)).)*$']);
 
 Route::any('api/{r?}',function($r=""){
 	App::abort(403, 'No Permission');
