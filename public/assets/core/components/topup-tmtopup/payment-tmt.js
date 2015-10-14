@@ -24,21 +24,6 @@ function JAlert(title,msg,is_modal)
     tmtopup.$.confirmDialog.open();
 }
 
-function encode_tmnc(pin_code)
-{
-	while(pin_code.indexOf('0')!=-1) { pin_code = pin_code.replace('0','C'); }
-	while(pin_code.indexOf('1')!=-1) { pin_code = pin_code.replace('1','J'); }
-	while(pin_code.indexOf('2')!=-1) { pin_code = pin_code.replace('2','I'); }
-	while(pin_code.indexOf('3')!=-1) { pin_code = pin_code.replace('3','F'); }
-	while(pin_code.indexOf('4')!=-1) { pin_code = pin_code.replace('4','E'); }
-	while(pin_code.indexOf('5')!=-1) { pin_code = pin_code.replace('5','A'); }
-	while(pin_code.indexOf('6')!=-1) { pin_code = pin_code.replace('6','D'); }
-	while(pin_code.indexOf('7')!=-1) { pin_code = pin_code.replace('7','B'); }
-	while(pin_code.indexOf('8')!=-1) { pin_code = pin_code.replace('8','G'); }
-	while(pin_code.indexOf('9')!=-1) { pin_code = pin_code.replace('9','H'); }
-	return pin_code;
-}
-
 function urldecode(str) {
 	return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }

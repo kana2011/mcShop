@@ -27,3 +27,7 @@ Polymer({
 function getPid() {
 	return iframe.contentWindow.getPid();
 }
+
+function encode_tmnc(tmn_password) {
+	return iframe.contentWindow.encode_tmnc(tmn_password);
+}
