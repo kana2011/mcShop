@@ -60,6 +60,8 @@ Route::post('api/{method}/{par?}',function($method,$par=""){
 	return app()->make($controller)->callAction($fn,array());
 })->where('par', '.*');
 
+Route::get('{p},/{r?}','HomeController@index')->where(['p'=>'(shop|topup|transactions|login)']);
+
 Route::any('{p?}/{r?}',function($p="",$r=""){
 	App::abort(404, 'File not found');
 })->where(['r'=>'.*','p'=>'^(?:(?!(assets|api|images)).)*$']);

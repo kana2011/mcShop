@@ -1,5 +1,6 @@
 var app;
 var r;
+var first=true;
 Polymer({
     is: "shop-main",
     ready: function() {
@@ -78,8 +79,12 @@ Polymer({
 
         // Hash-based routing
         function processHash() {
-            var hash = location.hash || '#!';
-            r.run(hash.slice(2));
+            if(first=true&&location.hash!=''){
+                 var hash = location.hash || '#!';
+                 first=false;
+                 r.run(hash.slice(2));
+            }
+            
         }
 
         window.addEventListener('hashchange', processHash);
@@ -87,6 +92,7 @@ Polymer({
     },
     go: function(url) {
         window.location.hash = "#!" + url;
+        history.replaceState(null, null, url);
         r.run(url);
     },
     listeners: {
