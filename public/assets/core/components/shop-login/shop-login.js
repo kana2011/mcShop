@@ -5,6 +5,7 @@ Polymer({
         login = this;
         this.loadShop();
         this.onbuttonclick = this.validate;
+        this.isRegister = 1;
         this.title;
     },
     loadShop: function() {
@@ -30,6 +31,18 @@ Polymer({
             login.$.password.removeAttribute("invalid");
         }
         login.submit();
+    },
+    validateRegister: function() {
+        setTimeout(function() {
+            if(($(login.$.rusername).val().length > 2) &&
+                ($(login.$.rpassword).val().length > 2) &&
+                ($(login.$.rconfirmpassword).val().length > 2) &&
+                ($(login.$.rpassword).val() == $(login.$.rconfirmpassword).val())) {
+                $(login.$.registerbutton).attr('disabled', false);
+            } else {
+                $(login.$.registerbutton).attr('disabled', true);
+            }
+        }, 10);
     },
     submit: function() {
         this.fire('login-start', {

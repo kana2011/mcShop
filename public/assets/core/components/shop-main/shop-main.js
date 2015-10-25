@@ -179,7 +179,7 @@ Polymer({
             };
         api.login(data, false, function(data){
             if(data.status) {
-                app.go('/');
+                location.reload();
                 login.cla = "";
                 login.username = "";
                 login.password = "";

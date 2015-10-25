@@ -21,7 +21,25 @@
                     <paper-icon-button icon="more-vert"></paper-icon-button>
                     <div class="bottom title" mcShop-title>{{title}}</div>
                 </paper-toolbar>
-                <shop-listing data="{{shop}}"></shop-listing>
+                <neon-animated-pages selected="{{isRegister}}" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
+                    <shop-listing data="{{shop}}"></shop-listing>
+                    <neon-animatable>
+                        <div class="horizontal layout" style="width: 100%;">
+                            <div class="flex"></div>
+                            <div>
+                                <paper-icon-button id="close-button" icon="clear" on-tap="closeRegister"></paper-icon-button>
+                            </div>
+                        </div>
+                        <div class="center parent">
+                            <div class="center child register-container">
+                                <paper-input id="rusername" on-keypress="validateRegister" class="registerFields {{cla}}" value="{{rusername}}" label="Username" disabled?="{{dis}}"></paper-input>
+                                <paper-input id="rpassword" on-keypress="validateRegister" class="registerFields {{cla}}" type="password" label="Password" disabled?="{{dis}}"></paper-input>
+                                <paper-input id="rconfirmpassword" on-keypress="validateRegister" class="registerFields {{cla}}" value="{{rconfirmpassword}}" type="password" label="Confirm Password" disabled?="{{dis}}"></paper-input>
+                                <paper-button id="registerbutton" raised disabled onclick="{{onregisterclick}}">Register</paper-button>
+                            </div>
+                        </div>
+                    </neon-animatable>
+                </neon-animated-pages>
             </paper-scroll-header-panel>
         </paper-drawer-panel>
         <paper-toast id="toast1" text="Wrong username or password."></paper-toast>

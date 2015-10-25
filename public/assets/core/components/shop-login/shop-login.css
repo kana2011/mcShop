@@ -2,6 +2,42 @@ paper-input {
     text-align: left;
 }
 
+#close-button {
+    margin: 16px;
+}
+
+.center .parent {
+    position: relative;
+}
+
+.center .child {
+    position: absolute;
+    left: 50%;
+    margin-top: 172px;
+    transform: translate(-50%, 0%);
+    text-align: center;
+}
+
+.registerFields {
+    width: 224px;
+    padding-top: 0;
+}
+
+@media (min-width: 992px) {
+    .registerFields {
+        width: 360px;
+    }
+}
+
+#registerbutton {
+    margin-top: 16px;
+}
+
+#registerbutton:not([disabled]) {
+    color: #ffffff;
+    background-color: #4285f4;
+}
+
 .login-window {
     display: block;
     background-color: #ffffff;
